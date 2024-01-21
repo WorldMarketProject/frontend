@@ -12,9 +12,7 @@ import CardComponent from "@/components/Card";
 
 const Login = () => {
   return (
-    <div style={{ marginTop: 30 }}>
-      <CardComponent content={<LoginComponent />} height={430} />
-    </div>
+    <CardComponent content={<LoginComponent />} height={430} />
   );
 };
 

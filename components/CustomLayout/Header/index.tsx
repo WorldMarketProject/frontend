@@ -86,7 +86,7 @@ const HeaderPage = () => {
   }
 
   return (
-    <Header
+    <StyledHeader
       style={HeaderStyle}
     >
       <div className="pc-menu-btn">
@@ -158,7 +158,7 @@ const HeaderPage = () => {
           )}
         </div>
       </div>
-    </Header>
+    </StyledHeader>
   );
 };
 
@@ -173,6 +173,16 @@ const StyledLogo = styled(Image)`
     cursor: pointer;
   }
 `;
+
+const StyledHeader = styled(Header)`
+  && {
+    li {
+      display: flex;
+      align-items: center;
+      height: 52px;
+    }
+  }
+`
 
 
 const StyledButton = styled(Button)`
