@@ -82,6 +82,7 @@ const HeaderPage = () => {
     background: "#171E66",
     boxShadow: "0 1px 5px rgba(57, 63, 72, 0.2)",
     padding: 16,
+    height: 52,
   }
 
   return (
@@ -96,7 +97,7 @@ const HeaderPage = () => {
             mode="horizontal"
             selectedKeys={selectedKeys}
             items={menuList}
-            style={{ width: "100%", fontWeight: 600, fontSize: 17, background: '#171E66', fontFamily: `${kartriderKr.style.fontFamily}` }}
+            style={{ width: "100%", fontWeight: 600, fontSize: 17, background: '#171E66', fontFamily: `${kartriderKr.style.fontFamily}`, height: 52, alignItems: 'center' }}
             onSelect={(e) => setSelectedKeys([e?.key])}
           />
           {status != "loading" && (
@@ -115,13 +116,13 @@ const HeaderPage = () => {
               )}
               {!session && (
                 <>
-                  <div style={{ textAlign: "center" }}>
+                  <div style={{ textAlign: "center", display: 'flex', alignItems: 'center' }}>
                     <StyledButton onClick={() => router.push("/auth/login")} style={{ width: 90, fontFamily: `${kartriderKr.style.fontFamily}`, fontWeight: 600 }}>
                       로그인
                     </StyledButton>
                   </div>
                   <div
-                    style={{ textAlign: "center", marginLeft: 10 }}
+                    style={{ textAlign: "center", marginLeft: 10, display: 'flex', alignItems: 'center' }}
                   >
                     <StyledButton
                       type="primary"
@@ -139,7 +140,7 @@ const HeaderPage = () => {
       </div>
       <div className="mobile-btn">
         <StyledLogo src={Logo} onClick={onClickLogo} alt="로고" />
-        <div style={{ marginLeft: "auto" }}>
+        <div style={{ marginLeft: "auto", display: 'flex', alignItems: 'center' }}>
           {status != "loading" && (
             <>
               <Button
@@ -150,7 +151,6 @@ const HeaderPage = () => {
                   fontSize: "22px",
                   width: 42,
                   height: 48,
-                  marginTop: 5,
                   color: '#fff'
                 }}
               />
