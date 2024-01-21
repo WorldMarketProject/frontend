@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const { Meta } = Card;
 
-const CardComponent = ({ title, content, width, height }: { title?: string, content: string | React.ReactNode, width?: number, height?: number }) => (
+const CardComponent = ({ title, content, width, height }: { title?: string, content: string | React.ReactNode | JSX.Element, width?: number, height?: number }) => (
   <>
     {title && <StyledTitleDiv>{title}</StyledTitleDiv>}
     <StyledCard

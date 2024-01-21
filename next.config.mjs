@@ -9,6 +9,14 @@ const nextConfig = {
     },
     /* useEffect 2번 실행되는 문제 해결 */
     reactStrictMode: false,
+    webpack(config) {
+        config.module.rules.push({
+            test: /\.svg$/,
+            use: ["@svgr/webpack"],
+        });
+
+        return config;
+    },
 };
 
 export default nextConfig;

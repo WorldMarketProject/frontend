@@ -7,7 +7,8 @@ import { useRouter, usePathname } from "next/navigation";
 import { use, useState, useEffect, Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
 import { useSession, signOut } from "next-auth/react";
-import localFont from 'next/font/local'
+import localFont from 'next/font/local';
+import Logo from '@/public/worldMarketLogo.png';
 
 const kartriderKr = localFont({
   variable: '--kart-rider-kr',
@@ -88,7 +89,7 @@ const HeaderPage = () => {
       style={HeaderStyle}
     >
       <div className="pc-menu-btn">
-        <StyledLogo src={'/worldMarketLogo.png'} onClick={onClickLogo} width={185} height={25.45} alt="로고" />
+        <StyledLogo src={Logo} onClick={onClickLogo} alt="로고" />
         <>
           <Menu
             theme="dark"
@@ -137,7 +138,7 @@ const HeaderPage = () => {
         </>
       </div>
       <div className="mobile-btn">
-        <StyledLogo src={'/worldMarketLogo.png'} onClick={onClickLogo} width={185} height={25.45} alt="로고" />
+        <StyledLogo src={Logo} onClick={onClickLogo} alt="로고" />
         <div style={{ marginLeft: "auto" }}>
           {status != "loading" && (
             <>

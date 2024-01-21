@@ -46,7 +46,7 @@ body {
 .sub-container {
     max-width: 372px !important;
     margin: 0 auto;
-    padding: 16px;
+    padding: 30px 16px;
 }
 
 .pc-menu-btn {
