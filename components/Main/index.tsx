@@ -38,7 +38,7 @@ const Main = () => {
               <CardComponent title="내 정보" content={<>로그인을 해주세요.</>} height={130} />
             </Col>
             <Col span={24}>
-              <Image src={BannerImg} alt="배너" style={{ maxWidth: '100%', height: 265 }} />
+              <Image src={BannerImg} alt="배너" layout="responsive" style={{ maxWidth: '100%' }} />
             </Col>
           </Row>
         </Col>

@@ -9,6 +9,9 @@ import styled from "styled-components";
 import { useSession, signOut } from "next-auth/react";
 import localFont from 'next/font/local';
 import Logo from '@/public/worldMarketLogo.png';
+import { useRecoilState, useRecoilValue } from "recoil";
+import { collapseState, menuState } from "@/recoil/states";
+import { MenuTypes } from "@/types/Common/Common.interface";
 
 const kartriderKr = localFont({
   variable: '--kart-rider-kr',
@@ -33,36 +36,14 @@ const kartriderKr = localFont({
 
 const { Header } = Layout;
 
-const menuList = [
-  {
-    key: 1,
-    label: '메인',
-    url: '/'
-  },
-  {
-    key: 2,
-    label: '거래 목록',
-    url: '/'
-  },
-  {
-    key: 3,
-    label: '거래 등록/수정',
-    url: '/'
-  },
-  {
-    key: 4,
-    label: '사용 가이드',
-    url: '/'
-  },
-]
-
 const HeaderPage = () => {
   const router = useRouter();
   const pathname = usePathname();
   const { data: session, status } = useSession();
   const [selectedKeys, setSelectedKeys] = useState([pathname]);
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useRecoilState(collapseState);
   const [profileOpen, setProfileOpen] = useState(false);
+  const menuList: MenuTypes[] = useRecoilValue(menuState);
 
   const onClickLogo = () => {
     router.push("/");
@@ -98,7 +79,7 @@ const HeaderPage = () => {
             selectedKeys={selectedKeys}
             items={menuList}
             style={{ width: "100%", fontWeight: 600, fontSize: 17, background: '#171E66', fontFamily: `${kartriderKr.style.fontFamily}`, height: 52, alignItems: 'center' }}
-            onSelect={(e) => setSelectedKeys([e?.key])}
+            onSelect={(e: any) => { setSelectedKeys([e?.key]); router.push(e?.item?.props?.url); }}
           />
           {status != "loading" && (
             <>

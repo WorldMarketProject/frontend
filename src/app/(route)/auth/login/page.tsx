@@ -35,7 +35,7 @@ export default Login;
 
 const Title = styled.div`
   font-size: 26px;
-  font-weight: 500;
+  font-weight: 600;
 `
 
 const Explain = styled.div`
@@ -51,7 +51,7 @@ const RegisterButton = styled(Button)`
     text-align: center;
     padding-right: 45px;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 10px;
     border-radius: 16px;
     background: #5865F2;

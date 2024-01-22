@@ -10,7 +10,7 @@ const CardComponent = ({ title, content, width, height }: { title?: string, cont
   <>
     {title && <StyledTitleDiv>{title}</StyledTitleDiv>}
     <StyledCard
-      style={{ width: width || '100%', height: height || 300 }}
+      style={{ width: width, height: height }}
     >
       {content}
     </StyledCard>
@@ -30,7 +30,6 @@ const StyledTitleDiv = styled.div`
 const StyledCard = styled(Card)`
     && {
         width: 100%;
-        height: 105px;
         box-shadow: 0 2px 12px 0 rgba(129, 137, 143, 0.18);
         transition: all 0.1s linear;
         &:hover {
