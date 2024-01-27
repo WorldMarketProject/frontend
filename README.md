@@ -16,7 +16,7 @@
     <tbody>
         <tr>
             <td align="center"><a href="https://github.com/HaSungJe">하성제</a></td>
-            <td align="center"><a href="https://github.com/mscojl24">이대규</a></td>
+            <td align="center"><a href="https://github.com/ilimes">이대규</a></td>
         </tr>
         <tr>
             <td align="center">BE</td>
