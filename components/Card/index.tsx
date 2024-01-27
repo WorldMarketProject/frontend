@@ -2,14 +2,15 @@
 
 import React from 'react';
 import { Card } from 'antd';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const { Meta } = Card;
 
-const CardComponent = ({ title, content, width, height }: { title?: string, content: string | React.ReactNode | JSX.Element, width?: number, height?: number }) => (
+const CardComponent = ({ title, content, width, height, transform }: { title?: string, content: string | React.ReactNode | JSX.Element, width?: number, height?: number, transform?: boolean }) => (
   <>
     {title && <StyledTitleDiv>{title}</StyledTitleDiv>}
     <StyledCard
+      $transform={transform}
       style={{ width: width, height: height }}
     >
       {content}
@@ -27,14 +28,16 @@ const StyledTitleDiv = styled.div`
     }
 `
 
-const StyledCard = styled(Card)`
+const StyledCard = styled(Card)<{$transform?: boolean}>`
     && {
         width: 100%;
         box-shadow: 0 2px 12px 0 rgba(129, 137, 143, 0.18);
         transition: all 0.1s linear;
-        &:hover {
-            transform: scale(1.01);
-            box-shadow: 0 2px 12px 0 rgba(129, 137, 143, 0.38);
-        }
+        ${props => props.$transform === true && css`
+          &:hover {
+              transform: scale(1.01);
+              box-shadow: 0 2px 12px 0 rgba(129, 137, 143, 0.38);
+          }
+        `}
     }
 `

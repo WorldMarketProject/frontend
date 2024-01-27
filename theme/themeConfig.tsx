@@ -27,7 +27,12 @@ const theme: ThemeConfig = {
     fontFamily: `${notoSansKr.style.fontFamily}`,
     borderRadiusLG: 12,
   },
-  components: {},
+  components: {
+    Table: {
+      headerBg: '#fff',
+      fontSize: 13
+    }
+  },
 };
 
 export default theme;

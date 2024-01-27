@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Button, Col, Row, Radio, message, Input } from "antd";
 import styled from "styled-components";
 import CardComponent from "@/components/Card";
+import SearchBar from "@/components/Item/SearchBar";
 
 const RegItem = () => {
     const onClickReg = () => {
@@ -45,7 +46,8 @@ const ItemComponent1 = () => {
             </Col>
             <Col xs={24} sm={24} md={24} lg={14} xl={14} xxl={14}>
                 <StyledTitleDiv>아이템 검색</StyledTitleDiv>
-                <Input size="large" />
+                {/* <Input size="large" placeholder="키워드를 입력해주세요." /> */}
+                <SearchBar />
             </Col>
             <Col xs={24} sm={24} md={24} lg={3} xl={3} xxl={3}>
                 <StyledTitleDiv>STR</StyledTitleDiv>
