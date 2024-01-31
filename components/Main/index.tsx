@@ -2,7 +2,7 @@
 
 import { Col, Row } from "antd";
 import CardComponent from "../Card";
-import BannerImg from "@/public/bannner.png"
+import BannerImg from "@/public/banner.png"
 import Image from "next/image";
 import RecentList from "./RecentList";
 import RecentSearch from "./RecentSearch";

@@ -1,7 +1,7 @@
 module.exports = {
     apps: [
       {
-        name: "WorldMarket",
+        name: "FreeMarket",
         script: "node_modules/next/dist/bin/next",
         args: "start --port 3001",
         instances: 1,

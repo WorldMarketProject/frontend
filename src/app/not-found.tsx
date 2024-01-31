@@ -5,8 +5,8 @@ import NotFoundImage from '../../public/not-found.png';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: "WorldMarket - 페이지를 찾을 수 없습니다",
-  description: "WorldMarket - 페이지를 찾을 수 없습니다",
+  title: "FreeMarket - 페이지를 찾을 수 없습니다",
+  description: "FreeMarket - 페이지를 찾을 수 없습니다",
 };
 
 const NotFound = () => {

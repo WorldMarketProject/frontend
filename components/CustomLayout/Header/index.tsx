@@ -8,7 +8,7 @@ import { use, useState, useEffect, Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
 import { useSession, signOut } from "next-auth/react";
 import localFont from 'next/font/local';
-import Logo from '@/public/worldMarketLogo.png';
+import Logo from '@/public/freeMarketLogo.png';
 import { useRecoilState, useRecoilValue } from "recoil";
 import { collapseState, menuState } from "@/recoil/states";
 import { MenuTypes } from "@/types/Common/Common.interface";
