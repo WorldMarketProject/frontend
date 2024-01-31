@@ -34,7 +34,7 @@
 ### 저장소 클론
 **`git clone`** 명령어를 실행하여 원격 저장소의 커밋을 로컬 저장소에 내려받습니다.
 ```bash
-$ git clone https://github.com/WorldMarketProject/frontend.git
+$ git clone https://github.com/FreeMarketProject/frontend.git
 ```
 
 ### 개발 branch 내려받기
