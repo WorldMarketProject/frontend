@@ -3,7 +3,7 @@ import "./globals.css";
 import CustomLayout from "@/components/CustomLayout";
 
 export const metadata: Metadata = {
-  title: "Free Market",
+  title: "FreeMarket",
   description: "자유시장",
 };
 
