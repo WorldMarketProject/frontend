@@ -1,7 +1,7 @@
 # FreeMarket
 
 <div align="center">
-    <img src="https://github.com/WorldMarketProject/frontend/assets/95404736/24209ebb-8f4b-438f-af4a-b73e0a7f76d1" width="250"/>
+    <img src="https://github.com/WorldMarketProject/frontend/assets/95404736/a41bda40-f6db-4ffb-bc59-ee5991cfdccf" width="250"/>
 </div>
 
 <h2>🔗 배포주소 : <a href="http://146.56.148.72:3001/" rel="nofollow">FreeMarket</a></h2></h2>
