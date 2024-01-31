@@ -3,8 +3,8 @@ import "./globals.css";
 import CustomLayout from "@/components/CustomLayout";
 
 export const metadata: Metadata = {
-  title: "World Market",
-  description: "월드 마켓",
+  title: "Free Market",
+  description: "자유시장",
 };
 
 export const viewport: Viewport = {
