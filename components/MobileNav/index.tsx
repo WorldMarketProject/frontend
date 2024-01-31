@@ -10,7 +10,7 @@ import {
   LogoutOutlined,
   UserAddOutlined
 } from '@ant-design/icons';
-import Logo from "../../public/worldMarketLogo.png";
+import Logo from "../../public/freeMarketLogo.png";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useSession, signOut } from 'next-auth/react'
 import styled from "styled-components";

@@ -21,8 +21,8 @@ const LoginComponent = () => {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <Title>월드마켓 로그인</Title>
-      <Explain>월드마켓은 거래할 수 있는 공간입니다.</Explain>
+      <Title>자유시장 로그인</Title>
+      <Explain>자유시장은 거래할 수 있는 공간입니다.</Explain>
       <Image src={MoneyImg} alt='not found' style={{ marginTop: 10 }} />
       <div style={{ margin: '20px 0' }}>
         <RegisterButton type="primary" icon={<Discord style={{ width: 23, height: 22, margin: '0 10px', verticalAlign: 'text-bottom' }} />} onClick={() => router.push('/auth/login/discord')}>Discord로 로그인</RegisterButton>
