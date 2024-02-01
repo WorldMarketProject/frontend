@@ -11,7 +11,7 @@ export const menuState = atom<MenuTypes[]>({
   default: [
     {
       key: '/',
-      label: '메인',
+      label: '중고거래',
       url: '/'
     },
   ],

@@ -58,7 +58,7 @@ const MobileNav = () => {
       onClose={() => setCollapsed(false)}
       open={collapsed}
       title={
-        <div style={{ display: "flex", height: 52, background: '#171e66', padding: '0 20px' }}>
+        <div style={{ display: "flex", height: 52, background: '#348485', padding: '0 20px' }}>
           <StyledLogo src={Logo} onClick={onClickLogo} alt="로고" />
           <Button
             type="text"
@@ -84,7 +84,7 @@ const MobileNav = () => {
       <div className="mobile-nav-menu">
         {
           !session &&
-          <h3>로그인 후 이용해주세요.</h3>
+          <h3 style={{ fontWeight: 600 }}>로그인 후 이용해주세요.</h3>
         }
         <Menu
           theme="light"

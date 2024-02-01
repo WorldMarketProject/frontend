@@ -8,14 +8,18 @@ import useIsMobile from "@/hooks/useIsMobile";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { collapseState, isMobileState, menuState } from "@/recoil/states";
 import MobileNav from "@/components/MobileNav";
+import Banner from "@/components/Main/Banner";
+import { usePathname } from "next/navigation";
 
 const { Content } = Layout;
 
 const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
   const mobile = useIsMobile();
+  const pathname = usePathname();
   const [isMobile, setIsMobile] = useRecoilState(isMobileState);
   const setCollapsed = useSetRecoilState<boolean>(collapseState);
   const setMenuList = useSetRecoilState(menuState);
+  const bannerViewPages = ['/', '/realty', '/jobs'];
 
   useEffect(() => {
     setCollapsed(false);
@@ -28,23 +32,18 @@ const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
     setMenuList([
       {
         key: '/',
-        label: '메인',
+        label: '중고거래',
         url: '/'
       },
       {
-        key: '/item/list',
-        label: '거래 목록',
-        url: '/item/list'
+        key: '/realty',
+        label: '부동산',
+        url: '/realty'
       },
       {
-        key: '/item/reg',
-        label: '거래 등록/수정',
-        url: '/item/reg'
-      },
-      {
-        key: '/guide',
-        label: '사용 가이드',
-        url: '/guide'
+        key: '/jobs',
+        label: '아르바이트',
+        url: '/jobs'
       },
     ])
   }, [])
@@ -52,7 +51,8 @@ const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Header />
-      <Content style={{ background: "#F5F5F7" }}>{children}</Content>
+      {bannerViewPages?.includes(pathname) && <Banner path={pathname} />}
+      <Content>{children}</Content>
       <Footer />
       {isMobile && <MobileNav />}
     </>

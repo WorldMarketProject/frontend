@@ -22,7 +22,8 @@ const notoSansKr = Noto_Sans_KR({
 const theme: ThemeConfig = {
   token: {
     fontSize: 14,
-    colorPrimary: '#171E66',
+    // colorPrimary: '#171E66',
+    colorPrimary: '#348485',
     colorBgLayout: '#fff',
     fontFamily: `${notoSansKr.style.fontFamily}`,
     borderRadiusLG: 12,

@@ -1,7 +1,8 @@
 import { loadStatusCodeList, loadTradeList } from "@/api/Api";
 import { DataType, ElementType } from "@/types/RecentList/RecentList.interface";
-import { Select, Table, TableColumnsType } from "antd";
+import { Col, Row, Select, Table, TableColumnsType } from "antd";
 import { useEffect, useState } from "react";
+import ItemCard from "./ItemCard";
 
 const RecentList = () => {
     const [data, setData] = useState([]);
@@ -102,13 +103,29 @@ const RecentList = () => {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            <div style={{ fontWeight: 600 }}>서버</div>
+            <div style={{ fontWeight: 600 }}>지역</div>
             <div>
                 <Select defaultValue={'mapleland'} options={[{ value: 'mapleland', label: '메이플랜드' }]} style={{ width: 130 }} />
             </div>
             <div>
-                <Table rowKey={(record) => record?.tr_title + record?.reg_dt} columns={columns} dataSource={data} />
+              <Row gutter={[15, 15]}>
+                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8}>                  
+                  <ItemCard />
+                </Col>
+                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8}>                          
+                  <ItemCard />
+                </Col>
+                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8}>                            
+                  <ItemCard />
+                </Col>
+                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8}>                          
+                  <ItemCard />
+                </Col>
+              </Row>
             </div>
+            {/* <div>
+                <Table rowKey={(record) => record?.tr_title + record?.reg_dt} columns={columns} dataSource={data} />
+            </div> */}
         </div>
     )
 }

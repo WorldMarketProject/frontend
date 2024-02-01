@@ -22,7 +22,7 @@ export default CardComponent;
 
 const StyledTitleDiv = styled.div`
     && {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 600;
       margin-bottom: 13px;
     }
@@ -31,12 +31,12 @@ const StyledTitleDiv = styled.div`
 const StyledCard = styled(Card)<{$transform?: boolean}>`
     && {
         width: 100%;
-        box-shadow: 0 2px 12px 0 rgba(129, 137, 143, 0.18);
+        box-shadow: 0 1px 12px 0 rgba(129, 137, 143, 0.08);
         transition: all 0.1s linear;
         ${props => props.$transform === true && css`
           &:hover {
               transform: scale(1.01);
-              box-shadow: 0 2px 12px 0 rgba(129, 137, 143, 0.38);
+              box-shadow: 0 1px 12px 0 rgba(129, 137, 143, 0.38);
           }
         `}
     }

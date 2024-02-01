@@ -60,7 +60,7 @@ const HeaderPage = () => {
     width: "100%",
     display: "flex",
     alignItems: "center",
-    background: "#171E66",
+    background: "#348485",
     boxShadow: "0 1px 5px rgba(57, 63, 72, 0.2)",
     padding: 16,
     height: 52,
@@ -78,7 +78,7 @@ const HeaderPage = () => {
             mode="horizontal"
             selectedKeys={selectedKeys}
             items={menuList}
-            style={{ width: "100%", fontWeight: 600, fontSize: 17, background: '#171E66', fontFamily: `${kartriderKr.style.fontFamily}`, height: 52, alignItems: 'center' }}
+            style={{ width: "100%", fontWeight: 600, fontSize: 17, background: '#348485', fontFamily: `${kartriderKr.style.fontFamily}`, height: 52, alignItems: 'center' }}
             onSelect={(e: any) => { setSelectedKeys([e?.key]); router.push(e?.item?.props?.url); }}
           />
           {status != "loading" && (
@@ -108,7 +108,7 @@ const HeaderPage = () => {
                     <StyledButton
                       type="primary"
                       onClick={() => router.push("/auth/join")}
-                      style={{ background: '#6069C4', fontFamily: `${kartriderKr.style.fontFamily}`, fontWeight: 600 }}
+                      style={{ background: '#003B3C', fontFamily: `${kartriderKr.style.fontFamily}`, fontWeight: 600 }}
                     >
                       회원가입
                     </StyledButton>
