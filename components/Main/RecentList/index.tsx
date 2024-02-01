@@ -109,16 +109,16 @@ const RecentList = () => {
             </div>
             <div>
               <Row gutter={[15, 15]}>
-                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8}>                  
+                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>                  
                   <ItemCard />
                 </Col>
-                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8}>                          
+                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>                          
                   <ItemCard />
                 </Col>
-                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8}>                            
+                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>                            
                   <ItemCard />
                 </Col>
-                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={8}>                          
+                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>                          
                   <ItemCard />
                 </Col>
               </Row>

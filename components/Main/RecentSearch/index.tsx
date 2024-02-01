@@ -1,12 +1,15 @@
-import { SearchOutlined } from "@ant-design/icons"
+import { DeleteOutlined, SearchOutlined } from "@ant-design/icons"
 import { Input } from "antd"
 import styled from "styled-components"
 
 const RecentSearch = () => {
-    const tempArray = [
+    let tempArray = [
         { title: '프라다 가방' },
         { title: '전기자전거' },
         { title: '나이키 신발' },
+        { title: 'PlayStation 5' },
+        { title: 'Galaxy S24 Ultra' },
+        { title: 'iPhone 15 Pro Max' },
     ]
 
     return (
@@ -16,8 +19,8 @@ const RecentSearch = () => {
             <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
                 {tempArray?.map((e: { title: string }, i: number) => {
                     return (
-                        <SearchDiv key={i}>
-                            {e?.title}
+                        <SearchDiv key={i} onClick={() => tempArray = []}>
+                            {e?.title} <DeleteOutlined style={{ color: '#b5a999' }} />
                         </SearchDiv>
                     )
                 })}
@@ -26,11 +29,9 @@ const RecentSearch = () => {
     )
 }
 
-const SearchDiv = ({ children }: { children: string }) => <StyledDiv>{children}</StyledDiv>
-
 export default RecentSearch;
 
-const StyledDiv = styled.div`
+const SearchDiv = styled.div`
     border: 1px solid #D7D7D7;
     border-radius: 8px;
     padding: 5px 15px;

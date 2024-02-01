@@ -19,23 +19,31 @@ const Banner = ({ path }: { path: string }) => {
                 imgUrl: '/trade1.png'
             }
         }
+        if (path === '/jobs') {
+            return {
+                title: <><div>우리 동네에서 찾는</div><div>아르바이트</div></>,
+                subTitle: <><div>걸어서 10분 거리의</div><div>동네 알바들 여기 다 있어요.</div></>,
+                background: '#ffe2d2',
+                imgUrl: '/trade1.png'
+            }
+        }
     }
 
     return (
         <>
-            <div style={{ background: getInfo()?.background, height: 280, overflow: 'hidden' }}>
-                <div className="container" style={{ display: 'flex' }}>
+            <div style={{ background: getInfo()?.background, height: 260, overflow: 'hidden' }}>
+                <div className="container banner" style={{ display: 'flex' }}>
                     <div style={{ flex: 1 }}>
                         <div style={{ lineHeight: 1.4 }}>
                             <h1>
                                 {getInfo()?.title}
                             </h1>
                         </div>
-                        <div style={{ fontSize: 18, lineHeight: 1.4 }}>
+                        <div style={{ lineHeight: 1.4 }}>
                             {getInfo()?.subTitle}
                         </div>
                     </div>
-                    <div style={{ width: 350 }}>
+                    <div>
                         <Image src={getInfo()?.imgUrl || ''}
                             alt={getInfo()?.imgUrl || ''}
                             width={0}
