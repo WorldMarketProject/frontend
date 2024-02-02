@@ -31,3 +31,7 @@ export const loadStatusCodeList = async () => {
                       .then(res => res?.data)
                       .catch(err => console.error(err));
 }
+
+export const putJoinData = async (formData: any) => {
+    
+}

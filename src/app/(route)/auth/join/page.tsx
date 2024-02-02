@@ -5,15 +5,14 @@ import { Alert, Button, message } from "antd";
 import styled from "styled-components";
 import Discord from '@/public/svg/discord.svg';
 import Mail from '@/public/svg/mail.svg';
-import MoneyImg from '@/public/money.png';
+import JoinImg from '@/public/join.png';
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
 import CardComponent from "@/components/Card";
 
-const Login = () => {
+const Join = () => {
   return (
-    // <CardComponent content={<LoginComponent />} />
     <LoginComponent />
   );
 };
@@ -23,28 +22,28 @@ const LoginComponent = () => {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <Title>자유시장 로그인</Title>
+      <Title>자유시장 회원가입</Title>
       <Explain>
         <div>자유시장에서는 자유롭게 거래할 수 있고,</div>
         <div>부동산 및 아르바이트 정보도 얻을 수 있습니다.</div>
       </Explain>
-      <Image src={MoneyImg} alt='not found' style={{ marginTop: 10 }} />
+      <Image src={JoinImg} alt='join' style={{ width: 350, height: 250, marginTop: 10 }} />
       <div style={{ marginBottom: 30, fontSize: 12 }}>
-      <a href="https://kr.freepik.com/free-photo/3d-render-hand-dropping-golden-coins-on-white_36362346.htm#query=money&position=12&from_view=search&track=sph&uuid=bdc628c3-6add-49c4-9929-7f746b11d417">작가 upklyak</a> 출처 Freepik
+        <a href="https://kr.freepik.com/free-vector/hand-drawn-flat-design-people-waving-illustration_21559261.htm#query=join&position=15&from_view=search&track=sph&uuid=41d7c4c3-21a7-4be5-a22e-01fb4a438911">작가 pikisuperstar</a> 출처 Freepik
       </div>
-      <div style={{ marginTop: 10 }}>
-        <RegisterButton type="primary" ghost icon={<Mail style={{ width: 23, height: 22, margin: '0 10px', verticalAlign: 'text-bottom' }} />} onClick={() => router.push('/auth/login/email')}>이메일로 로그인</RegisterButton>
+      <div style={{ marginTop: 20 }}>
+        <RegisterButton type="primary" ghost icon={<Mail style={{ width: 23, height: 22, margin: '0 10px', verticalAlign: 'text-bottom' }} />} onClick={() => router.push('/auth/join/email')}>이메일로 회원가입</RegisterButton>
       </div>
       <BtnGroup>
         <StyledSpan onClick={() => router.push('/auth/passwordIssue')} style={{ marginLeft: 0 }}>비밀번호 재설정</StyledSpan>{/*  · <StyledSpan onClick={() => router.push('/auth/findAccount')}>계정 찾기</StyledSpan> */}
         {" "} · {" "}
-        <StyledSpan onClick={() => router.push('/auth/join')}>회원가입</StyledSpan>
+        <StyledSpan onClick={() => router.push('/auth/login')}>로그인 하러 가기</StyledSpan>
       </BtnGroup>
     </div>
   )
 }
 
-export default Login;
+export default Join;
 
 const Title = styled.div`
   font-size: 26px;

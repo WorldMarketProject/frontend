@@ -1,7 +1,11 @@
+import NoSsr from "@/components/NoSsr";
+import useIsMobile from "@/hooks/useIsMobile";
 import Image from "next/image";
 import React from "react";
 
 const Banner = ({ path }: { path: string }) => {
+    const isMobile = useIsMobile();
+
     const getInfo = () => {
         if (path === '/') {
             return {
@@ -16,7 +20,7 @@ const Banner = ({ path }: { path: string }) => {
                 title: <><div>복비없이 투명한</div><div>부동산 직거래</div></>,
                 subTitle: <><div>이웃이 살던 집, 자유시장에서</div><div>편하게 직거래해보세요.</div></>,
                 background: '#d2edfa',
-                imgUrl: '/trade1.png'
+                imgUrl: '/realty.png'
             }
         }
         if (path === '/jobs') {
@@ -24,35 +28,37 @@ const Banner = ({ path }: { path: string }) => {
                 title: <><div>우리 동네에서 찾는</div><div>아르바이트</div></>,
                 subTitle: <><div>걸어서 10분 거리의</div><div>동네 알바들 여기 다 있어요.</div></>,
                 background: '#ffe2d2',
-                imgUrl: '/trade1.png'
+                imgUrl: '/jobs.png'
             }
         }
     }
 
     return (
         <>
-            <div style={{ background: getInfo()?.background, height: 260, overflow: 'hidden' }}>
-                <div className="container banner" style={{ display: 'flex' }}>
-                    <div style={{ flex: 1 }}>
-                        <div style={{ lineHeight: 1.4 }}>
-                            <h1>
-                                {getInfo()?.title}
-                            </h1>
+            <div style={{ background: getInfo()?.background, height: isMobile ? 230 : 350, overflow: 'hidden' }}>
+                <NoSsr>
+                    <div className="container banner" style={{ display: 'flex', padding: '10px 16px' }}>
+                        <div style={{ flex: 1, marginTop: isMobile ? 30 : 65 }}>
+                            <div style={{ lineHeight: 1.4 }}>
+                                <h1>
+                                    {getInfo()?.title}
+                                </h1>
+                            </div>
+                            <div style={{ lineHeight: 1.4 }}>
+                                {getInfo()?.subTitle}
+                            </div>
                         </div>
-                        <div style={{ lineHeight: 1.4 }}>
-                            {getInfo()?.subTitle}
+                        <div>
+                            <Image src={getInfo()?.imgUrl || ''}
+                                alt={getInfo()?.imgUrl || ''}
+                                width={0}
+                                height={0}
+                                sizes="100vw"
+                                style={{ width: '100%', height: 'auto' }}
+                            />
                         </div>
                     </div>
-                    <div>
-                        <Image src={getInfo()?.imgUrl || ''}
-                            alt={getInfo()?.imgUrl || ''}
-                            width={0}
-                            height={0}
-                            sizes="100vw"
-                            style={{ width: '100%', height: 'auto' }}
-                        />
-                    </div>
-                </div>
+                </NoSsr>
             </div>
         </>
     )

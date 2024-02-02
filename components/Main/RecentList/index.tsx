@@ -101,21 +101,47 @@ const RecentList = () => {
         getCodeList();
     }, [])
 
+    const sampleInfo1 = {
+      imgUrl: "/bike.webp",
+      title: "전기자전거",
+      price: 50000,
+      region: "울산 남구 신정동"
+    }
+
+    const sampleInfo2 = {
+      imgUrl: "https://img.freepik.com/free-photo/top-view-composition-of-different-traveling-elements_23-2148884943.jpg?w=1800&t=st=1706790480~exp=1706791080~hmac=f0b352f31eae53fd74c55fa5bd21f19936aed1d5d11e740b2c6e59ad3f724e62",
+      title: "옷 세트 판매합니다 1234옷 세트 판매합니다 1234옷 세트 판매합니다 1234옷 세트 판매합니다 1234",
+      price: 50000,
+      region: "울산 남구 신정동"
+    }
+
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             <div style={{ fontWeight: 600 }}>지역</div>
-            <div>
-                <Select defaultValue={'mapleland'} options={[{ value: 'mapleland', label: '메이플랜드' }]} style={{ width: 130 }} />
+            <div style={{ marginBottom: 10 }}>
+                <Select defaultValue={'ulsan'} options={[{ value: 'ulsan', label: '울산' }]} style={{ width: 130 }} />
             </div>
             <div>
               <Row gutter={[15, 15]}>
                 <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>                  
+                  <ItemCard info={sampleInfo1}/>
+                </Col>
+                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>                          
+                  <ItemCard info={sampleInfo2} />
+                </Col>
+                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>                            
                   <ItemCard />
                 </Col>
                 <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>                          
                   <ItemCard />
                 </Col>
-                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>                            
+                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>                          
+                  <ItemCard />
+                </Col>
+                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>                          
+                  <ItemCard />
+                </Col>
+                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>                          
                   <ItemCard />
                 </Col>
                 <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>                          
