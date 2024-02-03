@@ -4,7 +4,7 @@ import { Col, Row, Select, Table, TableColumnsType } from "antd";
 import { useEffect, useState } from "react";
 import ItemCard from "./ItemCard";
 
-const RecentList = () => {
+const PopularList = () => {
     const [data, setData] = useState([]);
     const [codeList, setCodeList] = useState<ElementType[]>([]);
 
@@ -117,24 +117,8 @@ const RecentList = () => {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            <div style={{ fontWeight: 600 }}>지역</div>
-            <div style={{ marginBottom: 10 }}>
-                <Select defaultValue={'ulsan'} options={[{ value: 'ulsan', label: '울산' }]} style={{ width: 130 }} />
-            </div>
             <div>
               <Row gutter={[15, 20]}>
-                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>                  
-                  <ItemCard info={sampleInfo1}/>
-                </Col>
-                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>                          
-                  <ItemCard info={sampleInfo2} />
-                </Col>
-                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>                            
-                  <ItemCard />
-                </Col>
-                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>                          
-                  <ItemCard />
-                </Col>
                 <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>                          
                   <ItemCard />
                 </Col>
@@ -149,11 +133,8 @@ const RecentList = () => {
                 </Col>
               </Row>
             </div>
-            {/* <div>
-                <Table rowKey={(record) => record?.tr_title + record?.reg_dt} columns={columns} dataSource={data} />
-            </div> */}
         </div>
     )
 }
 
-export default RecentList;
+export default PopularList;

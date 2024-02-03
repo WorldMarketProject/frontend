@@ -32,7 +32,12 @@ const theme: ThemeConfig = {
     Table: {
       headerBg: '#fff',
       fontSize: 13
-    }
+    },
+    Carousel: {
+      dotHeight: 13,
+      dotWidth: 15,
+      dotActiveWidth: 25,
+    },
   },
 };
 

@@ -10,24 +10,24 @@ const Banner = ({ path }: { path: string }) => {
     const getInfo = () => {
         if (path === '/') {
             return {
-                title: <><div>믿을만한</div><div>이웃 간 <StyledSpan1>중고거래</StyledSpan1></div></>,
-                subTitle: <><div>동네 주민들과 가깝고 따뜻한 거래를</div><div>지금 경험해보세요.</div></>,
+                title: <><div>자유시장</div><div>회원 간 <StyledSpan1>중고거래</StyledSpan1></div></>,
+                subTitle: <><div>자유시장에서 따뜻한 거래를</div><div>지금 경험해보세요.</div></>,
                 background: '#f7f1eb',
                 imgUrl: '/trade1.png'
             }
         }
         if (path === '/realty') {
             return {
-                title: <><div>복비없이 투명한</div><div><StyledSpan2>부동산 직거래</StyledSpan2></div></>,
-                subTitle: <><div>이웃이 살던 집, 자유시장에서</div><div>편하게 직거래해보세요.</div></>,
+                title: <><div>투명한</div><div><StyledSpan2>부동산 직거래</StyledSpan2></div></>,
+                subTitle: <><div>집이 필요할 때, 자유시장에서</div><div>편하게 직거래해보세요.</div></>,
                 background: '#d2edfa',
                 imgUrl: '/realty.png'
             }
         }
         if (path === '/jobs') {
             return {
-                title: <><div>우리 동네에서 찾는</div><div><StyledSpan3>아르바이트</StyledSpan3></div></>,
-                subTitle: <><div>걸어서 10분 거리의</div><div>동네 알바들 여기 다 있어요.</div></>,
+                title: <><div>편하게 찾는</div><div><StyledSpan3>아르바이트</StyledSpan3></div></>,
+                subTitle: <><div>내가 원하는 알바들</div><div>쉽고 빠르게 찾아보세요.</div></>,
                 background: '#fdeadf',
                 imgUrl: '/jobs.png'
             }
