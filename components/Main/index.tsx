@@ -15,14 +15,8 @@ const Main = () => {
         <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
           <Row gutter={[30, 30]}>
             <Col span={24}>
-              <CardComponent content={<RecentSearch />} />
+              <CardComponent content={<RecentSearch type="used" />} />
             </Col>
-            {/* <Col span={24}>
-              <CardComponent title="등록한 거래" content={<>등록한 거래 목록</>} height={130} />
-            </Col>
-            <Col span={24}>
-              <CardComponent title="완료된 거래" content={<>완료된 거래 (채팅 내역이 있는)</>} height={130} />
-            </Col> */}
           </Row>
         </Col>
         <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
@@ -32,16 +26,6 @@ const Main = () => {
             </Col>
           </Row>
         </Col>
-        {/* <Col xs={24} sm={24} md={24} lg={5} xl={5} xxl={5}>
-          <Row gutter={[30, 30]}>
-            <Col span={24}>
-              <CardComponent title="내 정보" content={<RequiredLoginMsg />} />
-            </Col>
-            <Col span={24}>
-              <Image src={BannerImg} alt="배너" layout="responsive" style={{ maxWidth: '100%' }} />
-            </Col>
-          </Row>
-        </Col> */}
       </Row>
     </div>
   )

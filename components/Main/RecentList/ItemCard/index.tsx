@@ -42,7 +42,7 @@ const StyledDiv = styled.div<{$isImg: boolean}>`
     & > div:nth-child(1) {
         height: 200px;
         ${props => props.$isImg && css`
-            background: #c7cee3;
+            background: #dee2e7;
         `}
     }
     & > div:nth-child(2) {

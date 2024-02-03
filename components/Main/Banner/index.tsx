@@ -2,6 +2,7 @@ import NoSsr from "@/components/NoSsr";
 import useIsMobile from "@/hooks/useIsMobile";
 import Image from "next/image";
 import React from "react";
+import styled from "styled-components";
 
 const Banner = ({ path }: { path: string }) => {
     const isMobile = useIsMobile();
@@ -9,7 +10,7 @@ const Banner = ({ path }: { path: string }) => {
     const getInfo = () => {
         if (path === '/') {
             return {
-                title: <><div>믿을만한</div><div>이웃 간 중고거래</div></>,
+                title: <><div>믿을만한</div><div>이웃 간 <StyledSpan1>중고거래</StyledSpan1></div></>,
                 subTitle: <><div>동네 주민들과 가깝고 따뜻한 거래를</div><div>지금 경험해보세요.</div></>,
                 background: '#f7f1eb',
                 imgUrl: '/trade1.png'
@@ -17,7 +18,7 @@ const Banner = ({ path }: { path: string }) => {
         }
         if (path === '/realty') {
             return {
-                title: <><div>복비없이 투명한</div><div>부동산 직거래</div></>,
+                title: <><div>복비없이 투명한</div><div><StyledSpan2>부동산 직거래</StyledSpan2></div></>,
                 subTitle: <><div>이웃이 살던 집, 자유시장에서</div><div>편하게 직거래해보세요.</div></>,
                 background: '#d2edfa',
                 imgUrl: '/realty.png'
@@ -25,9 +26,9 @@ const Banner = ({ path }: { path: string }) => {
         }
         if (path === '/jobs') {
             return {
-                title: <><div>우리 동네에서 찾는</div><div>아르바이트</div></>,
+                title: <><div>우리 동네에서 찾는</div><div><StyledSpan3>아르바이트</StyledSpan3></div></>,
                 subTitle: <><div>걸어서 10분 거리의</div><div>동네 알바들 여기 다 있어요.</div></>,
-                background: '#ffe2d2',
+                background: '#fdeadf',
                 imgUrl: '/jobs.png'
             }
         }
@@ -65,3 +66,18 @@ const Banner = ({ path }: { path: string }) => {
 }
 
 export default Banner;
+
+const StyledSpan1 = styled.span`
+    background: linear-gradient(to right, rgb(32 105 106), rgb(84 133 146)) text;
+    -webkit-text-fill-color: transparent;
+`
+
+const StyledSpan2 = styled.span`
+    background: linear-gradient(to right, rgb(27, 79, 107), rgb(79, 136, 166)) text;
+    -webkit-text-fill-color: transparent;
+`
+
+const StyledSpan3 = styled.span`
+    background: linear-gradient(to right, rgb(65, 58, 53), rgb(108, 97, 89)) text;
+    -webkit-text-fill-color: transparent;
+`

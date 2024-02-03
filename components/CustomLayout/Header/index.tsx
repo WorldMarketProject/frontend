@@ -13,27 +13,6 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { collapseState, menuState } from "@/recoil/states";
 import { MenuTypes } from "@/types/Common/Common.interface";
 
-const kartriderKr = localFont({
-  variable: '--kart-rider-kr',
-  src: [
-    {
-      path: '../../../public/fonts/KartriderMedium.woff2',
-      weight: '400',
-      style: 'normal'
-    },
-    {
-      path: '../../../public/fonts/KartriderBold.woff2',
-      weight: '600',
-      style: 'normal'
-    },
-    {
-      path: '../../../public/fonts/KartriderExtraBold.woff2',
-      weight: '800',
-      style: 'normal'
-    }
-  ]
-})
-
 const { Header } = Layout;
 
 const HeaderPage = () => {
@@ -78,7 +57,7 @@ const HeaderPage = () => {
             mode="horizontal"
             selectedKeys={selectedKeys}
             items={menuList}
-            style={{ width: "100%", fontWeight: 600, fontSize: 17, background: '#348485', fontFamily: `${kartriderKr.style.fontFamily}`, height: 52, alignItems: 'center' }}
+            style={{ width: "100%", fontWeight: 600, fontSize: 15, background: '#348485', height: 52, alignItems: 'center' }}
             onSelect={(e: any) => { setSelectedKeys([e?.key]); router.push(e?.item?.props?.url); }}
           />
           {status != "loading" && (
@@ -98,7 +77,7 @@ const HeaderPage = () => {
               {!session && (
                 <>
                   <div style={{ textAlign: "center", display: 'flex', alignItems: 'center' }}>
-                    <StyledButton onClick={() => router.push("/auth/login")} style={{ width: 90, fontFamily: `${kartriderKr.style.fontFamily}`, fontWeight: 600 }}>
+                    <StyledButton onClick={() => router.push("/auth/login")} style={{ width: 90, fontSize: 13, fontWeight: 600 }}>
                       로그인
                     </StyledButton>
                   </div>
@@ -108,7 +87,7 @@ const HeaderPage = () => {
                     <StyledButton
                       type="primary"
                       onClick={() => router.push("/auth/join")}
-                      style={{ background: '#003B3C', fontFamily: `${kartriderKr.style.fontFamily}`, fontWeight: 600 }}
+                      style={{ background: '#003B3C', fontSize: 13, fontWeight: 600 }}
                     >
                       회원가입
                     </StyledButton>
@@ -129,7 +108,7 @@ const HeaderPage = () => {
                 icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                 onClick={() => setCollapsed(!collapsed)}
                 style={{
-                  fontSize: "22px",
+                  fontSize: "10px",
                   width: 42,
                   height: 48,
                   color: '#fff'
