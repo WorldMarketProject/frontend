@@ -68,16 +68,19 @@ const Banner = ({ path }: { path: string }) => {
 export default Banner;
 
 const StyledSpan1 = styled.span`
-    background: linear-gradient(to right, rgb(32 105 106), rgb(84 133 146)) text;
+    background: linear-gradient(to right, rgb(32 105 106), rgb(112, 141, 148));
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 `
 
 const StyledSpan2 = styled.span`
-    background: linear-gradient(to right, rgb(27, 79, 107), rgb(79, 136, 166)) text;
+    background: linear-gradient(to right, rgb(27, 79, 107), rgb(79, 136, 166));
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 `
 
 const StyledSpan3 = styled.span`
-    background: linear-gradient(to right, rgb(65, 58, 53), rgb(108, 97, 89)) text;
+    background: linear-gradient(to right, rgb(65, 58, 53), rgb(108, 97, 89));
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 `
