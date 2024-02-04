@@ -48,9 +48,9 @@ const Posts = () => {
                         </div>
                     </Col>
                     <Col span={24}>
-                        <div style={{ fontWeight: 600, fontSize: 18 }}>전기자전거</div>
+                        <div style={{ fontWeight: 700, fontSize: 18 }}>전기자전거</div>
                         <div style={{ fontSize: 13, color: '#8697bf' }}>가구/인테리어 ∙ 1일 전</div>
-                        <div style={{ fontWeight: 600, fontSize: 18, margin: '10px 0' }}>50,000원</div>
+                        <div style={{ fontWeight: 700, fontSize: 18, margin: '10px 0' }}>50,000원</div>
                         <div dangerouslySetInnerHTML={{ __html: tempText }} />
                         <div style={{ fontSize: 13, color: '#8697bf' }}>
                             관심 137 ∙ 채팅 85 ∙ 조회 2450

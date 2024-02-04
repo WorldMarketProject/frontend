@@ -13,7 +13,7 @@ const NotFound = () => {
   return (
     <div className='sub-container' style={{ textAlign: 'center' }}>
       <Image src={NotFoundImage} alt='not found' width={250} style={{ marginTop: 20 }} />
-      <h2 style={{ fontWeight: 600 }}>앗! 죄송해요.</h2>
+      <h2 style={{ fontWeight: 700 }}>앗! 죄송해요.</h2>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 2, marginBottom: 30, color: '#00000078', fontSize: 14 }}>
         <div>요청하신 페이지를 찾을 수 없습니다.</div>
       </div>

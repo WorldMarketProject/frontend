@@ -36,7 +36,7 @@ const PopularList = () => {
             const bgColor = element?.code_nm === '완료' ? '#7986e7' : 'grey';
             return (
                 <>
-                  <span style={{ background: bgColor, padding: 6, color: '#fff', fontWeight: 600, borderRadius: 8 }}>
+                  <span style={{ background: bgColor, padding: 6, color: '#fff', fontWeight: 700, borderRadius: 8 }}>
                     {element?.code_nm}
                   </span>
                 </>

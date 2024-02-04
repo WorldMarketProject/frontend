@@ -84,7 +84,7 @@ const MobileNav = () => {
       <div className="mobile-nav-menu">
         {
           !session &&
-          <h3 style={{ fontWeight: 600 }}>로그인 후 이용해주세요.</h3>
+          <h3 style={{ fontWeight: 700 }}>로그인 후 이용해주세요.</h3>
         }
         <Menu
           theme="light"

@@ -28,7 +28,7 @@ const RecentSearch = ({ type }: { type: string }) => {
     return (
         <div>
             <Input prefix={<SearchOutlined />} placeholder={`${typeName()}을 검색해보세요`} size="large" style={{ marginBottom: 20, /* background: '#f2f3f6' */ }} allowClear />
-            <div style={{ fontWeight: 600, marginBottom: 10 }}>최근 검색어</div>
+            <div style={{ fontWeight: 700, marginBottom: 10 }}>최근 검색어</div>
             <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
                 {tempArray?.map((e: { title: string }, i: number) => {
                     return (

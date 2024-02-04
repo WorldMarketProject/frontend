@@ -36,7 +36,7 @@ const RecentList = () => {
             const bgColor = element?.code_nm === '완료' ? '#7986e7' : 'grey';
             return (
                 <>
-                  <span style={{ background: bgColor, padding: 6, color: '#fff', fontWeight: 600, borderRadius: 8 }}>
+                  <span style={{ background: bgColor, padding: 6, color: '#fff', fontWeight: 700, borderRadius: 8 }}>
                     {element?.code_nm}
                   </span>
                 </>
@@ -117,7 +117,7 @@ const RecentList = () => {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            <div style={{ fontWeight: 600 }}>지역</div>
+            <div style={{ fontWeight: 700 }}>지역</div>
             <div style={{ marginBottom: 10 }}>
                 <Select defaultValue={'ulsan'} options={[{ value: 'ulsan', label: '울산' }]} style={{ width: 130 }} />
             </div>

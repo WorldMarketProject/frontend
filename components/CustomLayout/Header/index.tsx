@@ -57,7 +57,7 @@ const HeaderPage = () => {
             mode="horizontal"
             selectedKeys={selectedKeys}
             items={menuList}
-            style={{ width: "100%", fontWeight: 600, fontSize: 15, background: '#348485', height: 52, alignItems: 'center' }}
+            style={{ width: "100%", fontWeight: 700, fontSize: 15, background: '#348485', height: 52, alignItems: 'center' }}
             onSelect={(e: any) => { setSelectedKeys([e?.key]); router.push(e?.item?.props?.url); }}
           />
           {status != "loading" && (
@@ -77,7 +77,7 @@ const HeaderPage = () => {
               {!session && (
                 <>
                   <div style={{ textAlign: "center", display: 'flex', alignItems: 'center' }}>
-                    <StyledButton onClick={() => router.push("/auth/login")} style={{ width: 90, fontSize: 13, fontWeight: 600 }}>
+                    <StyledButton onClick={() => router.push("/auth/login")} style={{ width: 90, fontSize: 13, fontWeight: 700 }}>
                       로그인
                     </StyledButton>
                   </div>
@@ -87,7 +87,7 @@ const HeaderPage = () => {
                     <StyledButton
                       type="primary"
                       onClick={() => router.push("/auth/join")}
-                      style={{ background: '#003B3C', fontSize: 13, fontWeight: 600 }}
+                      style={{ background: '#003B3C', fontSize: 13, fontWeight: 700 }}
                     >
                       회원가입
                     </StyledButton>
