@@ -1,8 +1,8 @@
-'use client'
+"use client";
 
 import { Col, Row } from "antd";
 import CardComponent from "../Card";
-import BannerImg from "@/public/banner.png"
+import BannerImg from "@/public/banner.png";
 import Image from "next/image";
 import RecentList from "./RecentList";
 import RecentSearch from "./RecentSearch";
@@ -22,13 +22,16 @@ const Main = () => {
         <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
           <Row gutter={[30, 30]}>
             <Col span={24}>
-              <CardComponent title="최근 등록된 목록" content={<RecentList />} />
+              <CardComponent
+                title="최근 등록된 목록"
+                content={<RecentList />}
+              />
             </Col>
           </Row>
         </Col>
       </Row>
     </div>
-  )
-}
+  );
+};
 
 export default Main;

@@ -1,14 +1,32 @@
 "use client";
 
-import { Layout, Menu, Button, Popover, Col, Row, Card, Avatar, Badge, Drawer, Empty } from "antd";
-import { MenuFoldOutlined, MenuUnfoldOutlined, BellOutlined, UserOutlined, CloseOutlined } from "@ant-design/icons";
+import {
+  Layout,
+  Menu,
+  Button,
+  Popover,
+  Col,
+  Row,
+  Card,
+  Avatar,
+  Badge,
+  Drawer,
+  Empty,
+} from "antd";
+import {
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  BellOutlined,
+  UserOutlined,
+  CloseOutlined,
+} from "@ant-design/icons";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import { use, useState, useEffect, Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
 import { useSession, signOut } from "next-auth/react";
-import localFont from 'next/font/local';
-import Logo from '@/public/freeMarketLogo.png';
+import localFont from "next/font/local";
+import Logo from "@/public/freeMarketLogo.png";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { collapseState, menuState } from "@/recoil/states";
 import { MenuTypes } from "@/types/Common/Common.interface";
@@ -24,8 +42,17 @@ const HeaderPage = () => {
   const [profileOpen, setProfileOpen] = useState(false);
   const menuList: MenuTypes[] = useRecoilValue(menuState);
 
+  console.log("session", session);
+
   const onClickLogo = () => {
     router.push("/");
+  };
+
+  /**
+   * 로그아웃
+   */
+  const logout = () => {
+    signOut({ callbackUrl: "/" });
   };
 
   useEffect(() => {
@@ -43,12 +70,10 @@ const HeaderPage = () => {
     boxShadow: "0 1px 5px rgba(57, 63, 72, 0.2)",
     padding: 16,
     height: 52,
-  }
+  };
 
   return (
-    <StyledHeader
-      style={HeaderStyle}
-    >
+    <StyledHeader style={HeaderStyle}>
       <div className="pc-menu-btn">
         <StyledLogo src={Logo} onClick={onClickLogo} alt="로고" />
         <>
@@ -57,8 +82,18 @@ const HeaderPage = () => {
             mode="horizontal"
             selectedKeys={selectedKeys}
             items={menuList}
-            style={{ width: "100%", fontWeight: 700, fontSize: 15, background: '#348485', height: 52, alignItems: 'center' }}
-            onSelect={(e: any) => { setSelectedKeys([e?.key]); router.push(e?.item?.props?.url); }}
+            style={{
+              width: "100%",
+              fontWeight: 700,
+              fontSize: 15,
+              background: "#348485",
+              height: 52,
+              alignItems: "center",
+            }}
+            onSelect={(e: any) => {
+              setSelectedKeys([e?.key]);
+              router.push(e?.item?.props?.url);
+            }}
           />
           {status != "loading" && (
             <>
@@ -72,22 +107,41 @@ const HeaderPage = () => {
                       style={{ cursor: "pointer" }}
                     />
                   </div>
+                  <div onClick={() => logout()}>로그아웃</div>
                 </>
               )}
               {!session && (
                 <>
-                  <div style={{ textAlign: "center", display: 'flex', alignItems: 'center' }}>
-                    <StyledButton onClick={() => router.push("/auth/login")} style={{ width: 90, fontSize: 13, fontWeight: 700 }}>
+                  <div
+                    style={{
+                      textAlign: "center",
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <StyledButton
+                      onClick={() => router.push("/auth/login")}
+                      style={{ width: 90, fontSize: 13, fontWeight: 700 }}
+                    >
                       로그인
                     </StyledButton>
                   </div>
                   <div
-                    style={{ textAlign: "center", marginLeft: 10, display: 'flex', alignItems: 'center' }}
+                    style={{
+                      textAlign: "center",
+                      marginLeft: 10,
+                      display: "flex",
+                      alignItems: "center",
+                    }}
                   >
                     <StyledButton
                       type="primary"
                       onClick={() => router.push("/auth/join")}
-                      style={{ background: '#003B3C', fontSize: 13, fontWeight: 700 }}
+                      style={{
+                        background: "#003B3C",
+                        fontSize: 13,
+                        fontWeight: 700,
+                      }}
                     >
                       회원가입
                     </StyledButton>
@@ -100,7 +154,9 @@ const HeaderPage = () => {
       </div>
       <div className="mobile-btn">
         <StyledLogo src={Logo} onClick={onClickLogo} alt="로고" />
-        <div style={{ marginLeft: "auto", display: 'flex', alignItems: 'center' }}>
+        <div
+          style={{ marginLeft: "auto", display: "flex", alignItems: "center" }}
+        >
           {status != "loading" && (
             <>
               <Button
@@ -111,7 +167,7 @@ const HeaderPage = () => {
                   fontSize: "10px",
                   width: 42,
                   height: 48,
-                  color: '#fff'
+                  color: "#fff",
                 }}
               />
             </>
@@ -142,8 +198,7 @@ const StyledHeader = styled(Header)`
       height: 52px;
     }
   }
-`
-
+`;
 
 const StyledButton = styled(Button)`
   && {
