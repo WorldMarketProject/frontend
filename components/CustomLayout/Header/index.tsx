@@ -30,6 +30,8 @@ import Logo from "@/public/freeMarketLogo.png";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { collapseState, menuState } from "@/recoil/states";
 import { MenuTypes } from "@/types/Common/Common.interface";
+import ProfilePopOverContent from "./Profile";
+import Notification from "./Notification";
 
 const { Header } = Layout;
 
@@ -42,17 +44,8 @@ const HeaderPage = () => {
   const [profileOpen, setProfileOpen] = useState(false);
   const menuList: MenuTypes[] = useRecoilValue(menuState);
 
-  console.log("session", session);
-
   const onClickLogo = () => {
     router.push("/");
-  };
-
-  /**
-   * 로그아웃
-   */
-  const logout = () => {
-    signOut({ callbackUrl: "/" });
   };
 
   useEffect(() => {
@@ -99,15 +92,47 @@ const HeaderPage = () => {
             <>
               {session && (
                 <>
-                  <div style={{ alignItems: "center", display: "flex" }}>
-                    <Avatar
-                      size={34}
-                      icon={<UserOutlined />}
-                      onClick={() => setProfileOpen(!profileOpen)}
-                      style={{ cursor: "pointer" }}
-                    />
-                  </div>
-                  <div onClick={() => logout()}>로그아웃</div>
+                  <Popover
+                    trigger="click"
+                    title="알림"
+                    content={Notification}
+                    placement="bottom"
+                  >
+                    <div
+                      style={{
+                        marginRight: 20,
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Badge dot>
+                        <BellOutlined
+                          style={{
+                            fontSize: 20,
+                            cursor: "pointer",
+                            color: "#fff",
+                          }}
+                        />
+                      </Badge>
+                    </div>
+                  </Popover>
+                  <Popover
+                    trigger="click"
+                    open={profileOpen}
+                    title="내 정보"
+                    content={() => ProfilePopOverContent(setProfileOpen)}
+                    onOpenChange={() => setProfileOpen(!profileOpen)}
+                    placement="bottom"
+                  >
+                    <div style={{ alignItems: "center", display: "flex" }}>
+                      <Avatar
+                        size={34}
+                        icon={<UserOutlined />}
+                        onClick={() => setProfileOpen(!profileOpen)}
+                        style={{ cursor: "pointer" }}
+                      />
+                    </div>
+                  </Popover>
                 </>
               )}
               {!session && (

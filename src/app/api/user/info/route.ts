@@ -10,6 +10,7 @@ export async function POST(req: NextRequest) {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        token: body?.token,
       },
       body: JSON.stringify(body),
     }

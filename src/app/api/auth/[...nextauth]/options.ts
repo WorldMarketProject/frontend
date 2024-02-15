@@ -20,6 +20,7 @@ declare module "next-auth" {
 // NextAuth 옵션 지정 객체
 export const options: NextAuthOptions = {
   providers: [
+    // 차후 oAuth 기능 구현 시 사용
     // KakaoProvider({
     //   clientId: process.env.KAKAO_CLIENT_ID!,
     //   clientSecret: process.env.KAKAO_CLIENT_SECRET!,
@@ -35,7 +36,7 @@ export const options: NextAuthOptions = {
           label: "아이디",
           type: "text",
         },
-        user_pw: { label: "비밀번호", type: "password" },
+        password: { label: "비밀번호", type: "password" },
       },
 
       async authorize(credentials: any, req) {
@@ -79,7 +80,7 @@ export const options: NextAuthOptions = {
         // TODO: axios
         const result = await getUser(formData);
         if (result?.data?.success) {
-          user.userInfo = result?.data?.user_info;
+          user.userInfo = result?.data?.info;
         }
 
         return true;
@@ -121,6 +122,9 @@ export const options: NextAuthOptions = {
 const getUser = async (formData: any) => {
   const res = await fetch(`${process.env.NEXTAUTH_URL}/api/user/info`, {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(formData),
   });
   const result = await res.json();

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { Layout, Menu, Drawer, Button, Divider, message } from "antd";
 import {
@@ -8,11 +8,11 @@ import {
   SettingOutlined,
   LoginOutlined,
   LogoutOutlined,
-  UserAddOutlined
-} from '@ant-design/icons';
+  UserAddOutlined,
+} from "@ant-design/icons";
 import Logo from "../../public/freeMarketLogo.png";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { useSession, signOut } from 'next-auth/react'
+import { useSession, signOut } from "next-auth/react";
 import styled from "styled-components";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
@@ -31,25 +31,25 @@ const MobileNav = () => {
   const menuList: MenuTypes[] = useRecoilValue(menuState);
 
   const onClickLogo = () => {
-    router.push('/');
+    router.push("/");
     setCollapsed(false);
-  }
+  };
 
   const onClickMenu = (path: string) => {
-    router.push(path)
+    router.push(path);
     setCollapsed(false);
-  }
+  };
 
   /**
    * 로그아웃
    */
   const logout = () => {
     signOut({ callbackUrl: "/" });
-  }
+  };
 
   useEffect(() => {
     setSelectedKeys([pathname]);
-  }, [pathname])
+  }, [pathname]);
 
   return (
     <Drawer
@@ -58,7 +58,14 @@ const MobileNav = () => {
       onClose={() => setCollapsed(false)}
       open={collapsed}
       title={
-        <div style={{ display: "flex", height: 52, background: '#348485', padding: '0 20px' }}>
+        <div
+          style={{
+            display: "flex",
+            height: 52,
+            background: "#348485",
+            padding: "0 20px",
+          }}
+        >
           <StyledLogo src={Logo} onClick={onClickLogo} alt="로고" />
           <Button
             type="text"
@@ -70,37 +77,44 @@ const MobileNav = () => {
               height: 48,
               marginTop: 5,
               marginLeft: "auto",
-              alignItems: 'center',
-              justifyContent: 'center',
-              display: 'flex',
-              color: '#fff'
+              alignItems: "center",
+              justifyContent: "center",
+              display: "flex",
+              color: "#fff",
             }}
           />
         </div>
       }
-      styles={{ header: { padding: 0 }, body: { padding: "0 20px", fontSize: 15 } }}
+      styles={{
+        header: { padding: 0 },
+        body: { padding: "0 20px", fontSize: 15 },
+      }}
       width={"100%"}
     >
       <div className="mobile-nav-menu">
-        {
-          !session &&
+        {session && (
+          <h3>{session?.user?.info?.userInfo?.user_nm} 님 반가워요 :)</h3>
+        )}
+        {!session && (
           <h3 style={{ fontWeight: 700 }}>로그인 후 이용해주세요.</h3>
-        }
+        )}
         <Menu
           theme="light"
           mode="inline"
           selectedKeys={selectedKeys}
           onClick={() => setCollapsed(false)}
           items={menuList}
-          onSelect={(e: any) => { setSelectedKeys([e?.key]); router.push(e?.item?.props?.url); }}
+          onSelect={(e: any) => {
+            setSelectedKeys([e?.key]);
+            router.push(e?.item?.props?.url);
+          }}
           style={{ fontSize: 15 }}
         />
         <Divider />
-        {
-          session &&
+        {session && (
           <>
             <div>
-              <StyledProfileDiv onClick={() => onClickMenu("/myPage")}>
+              <StyledProfileDiv onClick={() => onClickMenu("/auth/myPage")}>
                 <UserOutlined /> 마이페이지
               </StyledProfileDiv>
               <StyledProfileDiv onClick={() => logout()}>
@@ -108,9 +122,8 @@ const MobileNav = () => {
               </StyledProfileDiv>
             </div>
           </>
-        }
-        {
-          !session &&
+        )}
+        {!session && (
           <>
             <div>
               <StyledProfileDiv onClick={() => onClickMenu("/auth/login")}>
@@ -121,11 +134,11 @@ const MobileNav = () => {
               </StyledProfileDiv>
             </div>
           </>
-        }
+        )}
       </div>
     </Drawer>
   );
-}
+};
 
 export default MobileNav;
 
@@ -137,16 +150,16 @@ const StyledLogo = styled(Image)`
     font-size: 20px;
     cursor: pointer;
   }
-`
+`;
 const StyledButton = styled(Button)`
   && {
     font-size: 15px;
     transition: all 0.1s linear;
     &:hover {
-        transform: scale(1.03);
+      transform: scale(1.03);
     }
   }
-`
+`;
 
 const StyledProfileDiv = styled.div`
   && {
@@ -158,4 +171,4 @@ const StyledProfileDiv = styled.div`
       cursor: pointer;
     }
   }
-`
+`;

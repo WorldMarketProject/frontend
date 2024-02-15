@@ -1,4 +1,4 @@
-import { Layout } from "antd";
+import koKr from "antd/locale/ko_KR";
 import SessionProvider from "../../lib/SessionProvider";
 import RecoilRootProvider from "@/lib/RecoilRootProvider";
 import StyledComponentsRegistryAnt from "@/lib/AntdRegistry";
@@ -13,7 +13,7 @@ const CustomLayout = ({ children }: { children: React.ReactNode }) => {
       <RecoilRootProvider>
         <StyledComponentsRegistry>
           <StyledComponentsRegistryAnt>
-            <ConfigProvider theme={theme}>
+            <ConfigProvider theme={theme} locale={koKr}>
               <DefaultLayout>{children}</DefaultLayout>
             </ConfigProvider>
           </StyledComponentsRegistryAnt>

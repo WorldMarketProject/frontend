@@ -33,17 +33,17 @@ const onFinish = async (
     message.warning(res?.error || "아이디 혹은 비밀번호가 일치하지 않습니다.");
     router.push("/auth/login/id");
   } else {
-    router.refresh("/");
+    router.push("/");
   }
 };
 
 type FieldType = {
   user_id?: string;
-  user_pw?: string;
+  password?: string;
   agree?: string;
 };
 
-const EmailLogin = () => {
+const IdLogin = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -77,7 +77,7 @@ const EmailLogin = () => {
         <StyledTitleDiv>비밀번호</StyledTitleDiv>
         <Form.Item<FieldType>
           // label="비밀번호"
-          name="user_pw"
+          name="password"
           rules={[{ required: true, message: "비밀번호를 입력해주세요." }]}
           hasFeedback
           validateTrigger="onBlur"
@@ -117,7 +117,7 @@ const EmailLogin = () => {
   );
 };
 
-export default EmailLogin;
+export default IdLogin;
 
 const Title = styled.div`
   font-size: 26px;
