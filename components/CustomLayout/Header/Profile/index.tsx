@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 import unknownAvatar from "@/public/img/profile/unknown-avatar.png";
-import styled from "styled-components";
+import * as S from "./style";
 
 const ProfilePopOverContent = (
   setProfileOpen: Dispatch<SetStateAction<boolean>>
@@ -27,7 +27,7 @@ const ProfilePopOverContent = (
   };
 
   return (
-    <StyledPopoverDiv
+    <S.StyledPopoverDiv
       style={{
         width: 320,
         height: 450,
@@ -61,44 +61,19 @@ const ProfilePopOverContent = (
       </div>
       <div>
         {session?.user?.info?.userInfo?.role_rank > 2 && (
-          <StyledProfileDiv onClick={() => router.push("/admin")}>
+          <S.StyledProfileDiv onClick={() => router.push("/admin")}>
             관리자페이지
-          </StyledProfileDiv>
+          </S.StyledProfileDiv>
         )}
-        <StyledProfileDiv onClick={() => onClickMenu("/auth/myPage")}>
+        <S.StyledProfileDiv onClick={() => onClickMenu("/auth/myPage")}>
           마이페이지
-        </StyledProfileDiv>
-        <StyledProfileDiv onClick={() => signOut({ callbackUrl: "/" })}>
+        </S.StyledProfileDiv>
+        <S.StyledProfileDiv onClick={() => signOut({ callbackUrl: "/" })}>
           로그아웃
-        </StyledProfileDiv>
+        </S.StyledProfileDiv>
       </div>
-    </StyledPopoverDiv>
+    </S.StyledPopoverDiv>
   );
 };
 
 export default ProfilePopOverContent;
-
-const StyledProfileDiv = styled.div`
-  && {
-    border-radius: 10px;
-    padding: 15px 10px;
-    font-weight: 500;
-    &:hover {
-      background: #eee;
-      cursor: pointer;
-    }
-  }
-`;
-
-const StyledPopoverDiv = styled.div`
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: #45556066;
-    border-radius: 20px;
-    background-clip: padding-box;
-    border: 2px solid transparent;
-  }
-`;

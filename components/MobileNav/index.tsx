@@ -26,7 +26,7 @@ const MobileNav = () => {
   const router = useRouter();
   const pathname = usePathname();
   const { data: session, status } = useSession();
-  const [selectedKeys, setSelectedKeys] = useState([pathname]);
+  const [selectedKeys, setSelectedKeys] = useState<any>([pathname]);
   const [collapsed, setCollapsed] = useRecoilState(collapseState);
   const menuList: MenuTypes[] = useRecoilValue(menuState);
 
@@ -48,7 +48,10 @@ const MobileNav = () => {
   };
 
   useEffect(() => {
-    setSelectedKeys([pathname]);
+    setSelectedKeys([
+      menuList?.flatMap((e) => e.children)?.find((ele) => ele?.url === pathname)
+        ?.key,
+    ]);
   }, [pathname]);
 
   return (

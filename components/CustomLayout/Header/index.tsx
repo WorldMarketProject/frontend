@@ -18,7 +18,7 @@ import {
   MenuUnfoldOutlined,
   BellOutlined,
   UserOutlined,
-  CloseOutlined,
+  MessageOutlined,
 } from "@ant-design/icons";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
@@ -28,7 +28,7 @@ import { useSession, signOut } from "next-auth/react";
 import localFont from "next/font/local";
 import Logo from "@/public/freeMarketLogo.png";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { collapseState, menuState } from "@/recoil/states";
+import { chatDrawerState, collapseState, menuState } from "@/recoil/states";
 import { MenuTypes } from "@/types/Common/Common.interface";
 import ProfilePopOverContent from "./Profile";
 import Notification from "./Notification";
@@ -39,8 +39,9 @@ const HeaderPage = () => {
   const router = useRouter();
   const pathname = usePathname();
   const { data: session, status } = useSession();
-  const [selectedKeys, setSelectedKeys] = useState([pathname]);
+  const [selectedKeys, setSelectedKeys] = useState<any>([pathname]);
   const [collapsed, setCollapsed] = useRecoilState(collapseState);
+  const [isChatOpend, setIsChatOpend] = useRecoilState(chatDrawerState);
   const [profileOpen, setProfileOpen] = useState(false);
   const menuList: MenuTypes[] = useRecoilValue(menuState);
 
@@ -49,7 +50,10 @@ const HeaderPage = () => {
   };
 
   useEffect(() => {
-    setSelectedKeys([pathname]);
+    setSelectedKeys([
+      menuList?.flatMap((e) => e.children)?.find((ele) => ele?.url === pathname)
+        ?.key,
+    ]);
   }, [pathname]);
 
   const HeaderStyle: React.CSSProperties = {
@@ -92,6 +96,24 @@ const HeaderPage = () => {
             <>
               {session && (
                 <>
+                  <div
+                    style={{
+                      marginRight: 20,
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Badge dot>
+                      <MessageOutlined
+                        onClick={() => setIsChatOpend(true)}
+                        style={{
+                          fontSize: 18,
+                          cursor: "pointer",
+                          color: "#fff",
+                        }}
+                      />
+                    </Badge>
+                  </div>
                   <Popover
                     trigger="click"
                     title="알림"
@@ -184,6 +206,48 @@ const HeaderPage = () => {
         >
           {status != "loading" && (
             <>
+              <div
+                style={{
+                  marginRight: 20,
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <Badge dot>
+                  <MessageOutlined
+                    onClick={() => setIsChatOpend(true)}
+                    style={{
+                      fontSize: 18,
+                      cursor: "pointer",
+                      color: "#fff",
+                    }}
+                  />
+                </Badge>
+              </div>
+              <Popover
+                trigger="click"
+                title="알림"
+                content={Notification}
+                placement="bottom"
+              >
+                <div
+                  style={{
+                    marginRight: 10,
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <Badge dot>
+                    <BellOutlined
+                      style={{
+                        fontSize: 20,
+                        cursor: "pointer",
+                        color: "#fff",
+                      }}
+                    />
+                  </Badge>
+                </div>
+              </Popover>
               <Button
                 type="text"
                 icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -217,7 +281,8 @@ const StyledLogo = styled(Image)`
 
 const StyledHeader = styled(Header)`
   && {
-    li {
+    li,
+    .ant-menu-title-content {
       display: flex;
       align-items: center;
       height: 52px;
