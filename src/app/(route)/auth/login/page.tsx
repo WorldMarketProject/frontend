@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { Alert, Button, message } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 import Discord from "@/public/svg/discord.svg";
 import Mail from "@/public/svg/mail.svg";
 import MoneyImg from "@/public/money.png";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
 import TopMsg from "@/components/Login/TopMsg";
@@ -21,7 +21,9 @@ const LoginComponent = () => {
 
   return (
     <>
-      <TopMsg />
+      <Suspense fallback={<div></div>}>
+        <TopMsg />
+      </Suspense>
       <div style={{ textAlign: "center" }}>
         <Title>자유시장 로그인</Title>
         <Explain>
