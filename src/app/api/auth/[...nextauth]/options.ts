@@ -1,11 +1,11 @@
-import type { NextAuthOptions } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import KakaoProvider from "next-auth/providers/kakao";
-import GoogleProvider from "next-auth/providers/google";
-import { type DefaultSession, type DefaultUser } from "next-auth";
-import { UserInfoTypes } from "@/types/User/User.interface";
+import type { NextAuthOptions } from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import KakaoProvider from 'next-auth/providers/kakao';
+import GoogleProvider from 'next-auth/providers/google';
+import { type DefaultSession, type DefaultUser } from 'next-auth';
+import { UserInfoTypes } from '@/types/User/User.interface';
 
-declare module "next-auth" {
+declare module 'next-auth' {
   interface Session extends DefaultSession {
     user: {
       info: any;
@@ -30,13 +30,13 @@ export const options: NextAuthOptions = {
     //   clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     // }),
     CredentialsProvider({
-      name: "Credentials",
+      name: 'Credentials',
       credentials: {
         user_id: {
-          label: "아이디",
-          type: "text",
+          label: '아이디',
+          type: 'text',
         },
-        password: { label: "비밀번호", type: "password" },
+        password: { label: '비밀번호', type: 'password' },
       },
 
       async authorize(credentials: any, req) {
@@ -52,24 +52,24 @@ export const options: NextAuthOptions = {
             return result;
           }
 
-          msg = result?.data?.message || "에러";
-          throw new Error(msg || "에러");
+          msg = result?.data?.message || '에러';
+          throw new Error(msg || '에러');
           // return null
         } catch (error) {
-          throw new Error(msg || "에러");
+          throw new Error(msg || '에러');
         }
       },
     }),
   ],
   pages: {
-    signIn: "/auth/login",
+    signIn: '/auth/login',
   },
   callbacks: {
     async signIn({ user, profile }) {
       try {
         // // 데이터베이스에 유저가 있는지 확인
         const token = user?.data?.token;
-        const type = user?.id ? "oAuth" : undefined;
+        const type = user?.id ? 'oAuth' : undefined;
         const formData: any = {
           token,
           type,
@@ -121,9 +121,9 @@ export const options: NextAuthOptions = {
 
 const getUser = async (formData: any) => {
   const res = await fetch(`${process.env.NEXTAUTH_URL}/api/user/info`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(formData),
   });
@@ -131,13 +131,11 @@ const getUser = async (formData: any) => {
   return result;
 };
 
-const login = async (
-  credentials: Record<"user_id" | "user_pw", string> | undefined
-) => {
+const login = async (credentials: Record<'user_id' | 'user_pw', string> | undefined) => {
   const res = await fetch(`${process.env.NEXTAUTH_URL}/api/user/login`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       user_id: credentials?.user_id,

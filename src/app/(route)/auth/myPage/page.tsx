@@ -1,27 +1,27 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { Button, Divider, Tabs } from "antd";
-import type { TabsProps } from "antd";
-import styled, { css } from "styled-components";
-import { useRouter } from "next/navigation";
-import Trade from "@/components/MyPage/Trade";
-import Title from "@/components/Title";
-import Account from "@/components/MyPage/Account";
+import React, { useState } from 'react';
+import { Button, Divider, Tabs } from 'antd';
+import type { TabsProps } from 'antd';
+import styled, { css } from 'styled-components';
+import { useRouter } from 'next/navigation';
+import Trade from '@/components/MyPage/Trade';
+import Title from '@/components/Title';
+import Account from '@/components/MyPage/Account';
 
 const MyPage = () => {
   const router = useRouter();
-  const [selectedKey, setSelectedKey] = useState("1");
+  const [selectedKey, setSelectedKey] = useState('1');
 
-  const list: TabsProps["items"] = [
+  const list: TabsProps['items'] = [
     {
-      key: "1",
-      label: "계정 관리",
+      key: '1',
+      label: '계정 관리',
       children: null,
     },
     {
-      key: "2",
-      label: "거래 관리",
+      key: '2',
+      label: '거래 관리',
       children: null,
     },
   ];
@@ -34,11 +34,9 @@ const MyPage = () => {
     <div>
       <Title content="마이페이지" />
       <StyledTabs activeKey={selectedKey} items={list} onChange={onChange} />
-      <div style={{ display: "flex", gap: 40 }}>
-        <StyledResponsiveDiv
-          style={{ width: 300, height: 580, position: "sticky", top: 90 }}
-        >
-          <StyledBoxDiv style={{ height: "100%" }}>
+      <div style={{ display: 'flex', gap: 40 }}>
+        <StyledResponsiveDiv style={{ width: 300, height: 580, position: 'sticky', top: 90 }}>
+          <StyledBoxDiv style={{ height: '100%' }}>
             {list?.map((e) => (
               <StyledMenuDiv
                 key={e?.key}
@@ -53,8 +51,8 @@ const MyPage = () => {
         </StyledResponsiveDiv>
         <div style={{ flex: 1 }}>
           <Title content={list?.find((e) => e.key === selectedKey)?.label} />
-          {selectedKey === "1" && <Account />}
-          {selectedKey === "2" && <Trade />}
+          {selectedKey === '1' && <Account />}
+          {selectedKey === '2' && <Trade />}
         </div>
       </div>
     </div>
@@ -99,7 +97,7 @@ const StyledMenuDiv = styled.div<{ $selectedkey: string; $menukey: string }>`
     margin-bottom: 5px;
     font-weight: 500;
     ${(props) =>
-      props.$selectedkey == props.$menukey
+      props.$selectedkey === props.$menukey
         ? css`
             background: #eee;
             font-weight: 800;

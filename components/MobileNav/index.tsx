@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { Layout, Menu, Drawer, Button, Divider, message } from "antd";
+import { Layout, Menu, Drawer, Button, Divider, message } from 'antd';
 import {
   CloseOutlined,
   UploadOutlined,
@@ -9,16 +9,16 @@ import {
   LoginOutlined,
   LogoutOutlined,
   UserAddOutlined,
-} from "@ant-design/icons";
-import Logo from "../../public/freeMarketLogo.png";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { useSession, signOut } from "next-auth/react";
-import styled from "styled-components";
-import { useRouter, usePathname } from "next/navigation";
-import Image from "next/image";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { collapseState, menuState } from "@/recoil/states";
-import { MenuTypes } from "@/types/Common/Common.interface";
+} from '@ant-design/icons';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useSession, signOut } from 'next-auth/react';
+import styled from 'styled-components';
+import { useRouter, usePathname } from 'next/navigation';
+import Image from 'next/image';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import Logo from '../../public/freeMarketLogo.png';
+import { collapseState, menuState } from '@/recoil/states';
+import { MenuTypes } from '@/types/Common/Common.interface';
 
 const { Sider } = Layout;
 
@@ -31,7 +31,7 @@ const MobileNav = () => {
   const menuList: MenuTypes[] = useRecoilValue(menuState);
 
   const onClickLogo = () => {
-    router.push("/");
+    router.push('/');
     setCollapsed(false);
   };
 
@@ -44,13 +44,12 @@ const MobileNav = () => {
    * 로그아웃
    */
   const logout = () => {
-    signOut({ callbackUrl: "/" });
+    signOut({ callbackUrl: '/' });
   };
 
   useEffect(() => {
     setSelectedKeys([
-      menuList?.flatMap((e) => e.children)?.find((ele) => ele?.url === pathname)
-        ?.key,
+      menuList?.flatMap((e) => e.children)?.find((ele) => ele?.url === pathname)?.key,
     ]);
   }, [pathname]);
 
@@ -63,10 +62,10 @@ const MobileNav = () => {
       title={
         <div
           style={{
-            display: "flex",
+            display: 'flex',
             height: 52,
-            background: "#348485",
-            padding: "0 20px",
+            background: '#348485',
+            padding: '0 20px',
           }}
         >
           <StyledLogo src={Logo} onClick={onClickLogo} alt="로고" />
@@ -75,32 +74,28 @@ const MobileNav = () => {
             icon={<CloseOutlined />}
             onClick={() => setCollapsed(!collapsed)}
             style={{
-              fontSize: "22px",
+              fontSize: '22px',
               width: 42,
               height: 48,
               marginTop: 5,
-              marginLeft: "auto",
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-              color: "#fff",
+              marginLeft: 'auto',
+              alignItems: 'center',
+              justifyContent: 'center',
+              display: 'flex',
+              color: '#fff',
             }}
           />
         </div>
       }
       styles={{
         header: { padding: 0 },
-        body: { padding: "0 20px", fontSize: 15 },
+        body: { padding: '0 20px', fontSize: 15 },
       }}
-      width={"100%"}
+      width="100%"
     >
       <div className="mobile-nav-menu">
-        {session && (
-          <h3>{session?.user?.info?.userInfo?.user_nm} 님 반가워요 :)</h3>
-        )}
-        {!session && (
-          <h3 style={{ fontWeight: 700 }}>로그인 후 이용해주세요.</h3>
-        )}
+        {session && <h3>{session?.user?.info?.userInfo?.user_nm} 님 반가워요 :)</h3>}
+        {!session && <h3 style={{ fontWeight: 700 }}>로그인 후 이용해주세요.</h3>}
         <Menu
           theme="light"
           mode="inline"
@@ -117,7 +112,7 @@ const MobileNav = () => {
         {session && (
           <>
             <div>
-              <StyledProfileDiv onClick={() => onClickMenu("/auth/myPage")}>
+              <StyledProfileDiv onClick={() => onClickMenu('/auth/myPage')}>
                 <UserOutlined /> 마이페이지
               </StyledProfileDiv>
               <StyledProfileDiv onClick={() => logout()}>
@@ -129,10 +124,10 @@ const MobileNav = () => {
         {!session && (
           <>
             <div>
-              <StyledProfileDiv onClick={() => onClickMenu("/auth/login")}>
+              <StyledProfileDiv onClick={() => onClickMenu('/auth/login')}>
                 <LoginOutlined /> 로그인
               </StyledProfileDiv>
-              <StyledProfileDiv onClick={() => onClickMenu("/auth/join")}>
+              <StyledProfileDiv onClick={() => onClickMenu('/auth/join')}>
                 <UserAddOutlined /> 회원가입
               </StyledProfileDiv>
             </div>

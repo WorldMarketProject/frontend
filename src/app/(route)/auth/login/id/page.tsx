@@ -1,21 +1,21 @@
-"use client";
+'use client';
 
-import { signIn } from "next-auth/react";
-import { Button, Checkbox, Form, Input, Drawer, message, Spin } from "antd";
-import { LeftOutlined, MailOutlined, LockOutlined } from "@ant-design/icons";
-import styled from "styled-components";
-import { Dispatch, SetStateAction, useState } from "react";
-import { useRouter } from "next/navigation";
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { ValuesTypes } from "@/types/User/User.interface";
+import { signIn } from 'next-auth/react';
+import { Button, Checkbox, Form, Input, Drawer, message, Spin } from 'antd';
+import { LeftOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
+import styled from 'styled-components';
+import { Dispatch, SetStateAction, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import { ValuesTypes } from '@/types/User/User.interface';
 
 const onFinish = async (
   values: ValuesTypes,
   setIsLoading: Dispatch<SetStateAction<boolean>>,
-  router: AppRouterInstance | any
+  router: AppRouterInstance | any,
 ) => {
   setIsLoading(true);
-  const res = await signIn("credentials", {
+  const res = await signIn('credentials', {
     user_id: values?.user_id,
     password: values?.password,
     redirect: false,
@@ -30,10 +30,10 @@ const onFinish = async (
 
   // 에러 핸들링
   if (res?.status === 401) {
-    message.warning(res?.error || "아이디 혹은 비밀번호가 일치하지 않습니다.");
-    router.push("/auth/login/id");
+    message.warning(res?.error || '아이디 혹은 비밀번호가 일치하지 않습니다.');
+    router.push('/auth/login/id');
   } else {
-    router.push("/");
+    router.push('/');
   }
 };
 
@@ -66,7 +66,7 @@ const IdLogin = () => {
           rules={[
             {
               required: true,
-              message: "아이디를 입력해주세요.",
+              message: '아이디를 입력해주세요.',
             },
           ]}
           hasFeedback
@@ -78,23 +78,20 @@ const IdLogin = () => {
         <Form.Item<FieldType>
           // label="비밀번호"
           name="password"
-          rules={[{ required: true, message: "비밀번호를 입력해주세요." }]}
+          rules={[{ required: true, message: '비밀번호를 입력해주세요.' }]}
           hasFeedback
           validateTrigger="onBlur"
         >
-          <Input.Password
-            placeholder="비밀번호를 입력해주세요."
-            style={{ height: 40 }}
-          />
+          <Input.Password placeholder="비밀번호를 입력해주세요." style={{ height: 40 }} />
         </Form.Item>
         <Form.Item>
           <Button
             type="primary"
             htmlType="submit"
             style={{
-              width: "100%",
+              width: '100%',
               height: 47,
-              fontWeight: "bold",
+              fontWeight: 'bold',
               fontSize: 15,
               marginTop: 10,
             }}
@@ -105,10 +102,7 @@ const IdLogin = () => {
         </Form.Item>
       </StyledForm>
       <BtnGroup>
-        <StyledSpan
-          style={{ marginLeft: 0 }}
-          onClick={() => router.push("/auth/login")}
-        >
+        <StyledSpan style={{ marginLeft: 0 }} onClick={() => router.push('/auth/login')}>
           <LeftOutlined style={{ marginRight: 5 }} />
           다른 방식으로 로그인
         </StyledSpan>
@@ -157,8 +151,8 @@ const StyledSpan = styled.span`
 `;
 
 const fetchData = async (formData: object) => {
-  const res = await fetch(`/api/login`, {
-    method: "POST",
+  const res = await fetch('/api/login', {
+    method: 'POST',
     body: JSON.stringify(formData),
   });
   const result = await res.json();
@@ -179,8 +173,8 @@ const fetchUserInfoData = async (token: string | null) => {
     token,
     type: undefined,
   };
-  const res = await fetch(`/api/userInfo`, {
-    method: "POST",
+  const res = await fetch('/api/userInfo', {
+    method: 'POST',
     body: JSON.stringify(formData),
   });
   const result = await res.json();

@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import Title from "@/components/Title";
-import { Button, Col, Input, Row, Select } from "antd";
-import { useRouter } from "next/navigation";
+import { Button, Col, Input, Row, Select } from 'antd';
+import { useRouter } from 'next/navigation';
+import Title from '@/components/Title';
 
 const RegItem = () => {
   const router = useRouter();
@@ -15,13 +15,13 @@ const RegItem = () => {
           <div style={{ fontWeight: 700, marginBottom: 10 }}>거래 종류</div>
           <div style={{ marginBottom: 10 }}>
             <Select
-              defaultValue={"/realty"}
+              defaultValue="/realty"
               options={[
-                { value: "", label: "중고거래" },
-                { value: "/realty", label: "부동산" },
-                { value: "/jobs", label: "아르바이트" },
+                { value: '', label: '중고거래' },
+                { value: '/realty', label: '부동산' },
+                { value: '/jobs', label: '아르바이트' },
               ]}
-              onChange={(e: string) => router.push(e + "/reg-item")}
+              onChange={(e: string) => router.push(`${e}/reg-item`)}
               style={{ width: 150 }}
             />
           </div>

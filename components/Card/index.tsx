@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React from "react";
-import { Card } from "antd";
-import * as S from "./style";
+import React from 'react';
+import { Card } from 'antd';
+import * as S from './style';
 
 const { Meta } = Card;
 
@@ -21,10 +21,7 @@ const CardComponent = ({
 }) => (
   <>
     {title && <S.StyledTitleDiv>{title}</S.StyledTitleDiv>}
-    <S.StyledCard
-      $transform={transform}
-      style={{ width: width, height: height }}
-    >
+    <S.StyledCard $transform={transform} style={{ width, height }}>
       {content}
     </S.StyledCard>
   </>

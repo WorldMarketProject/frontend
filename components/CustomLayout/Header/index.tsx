@@ -1,37 +1,25 @@
-"use client";
+'use client';
 
-import {
-  Layout,
-  Menu,
-  Button,
-  Popover,
-  Col,
-  Row,
-  Card,
-  Avatar,
-  Badge,
-  Drawer,
-  Empty,
-} from "antd";
+import { Layout, Menu, Button, Popover, Col, Row, Card, Avatar, Badge, Drawer, Empty } from 'antd';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   BellOutlined,
   UserOutlined,
   MessageOutlined,
-} from "@ant-design/icons";
-import Image from "next/image";
-import { useRouter, usePathname } from "next/navigation";
-import { use, useState, useEffect, Dispatch, SetStateAction } from "react";
-import styled from "styled-components";
-import { useSession, signOut } from "next-auth/react";
-import localFont from "next/font/local";
-import Logo from "@/public/freeMarketLogo.png";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { chatDrawerState, collapseState, menuState } from "@/recoil/states";
-import { MenuTypes } from "@/types/Common/Common.interface";
-import ProfilePopOverContent from "./Profile";
-import Notification from "./Notification";
+} from '@ant-design/icons';
+import Image from 'next/image';
+import { useRouter, usePathname } from 'next/navigation';
+import { use, useState, useEffect, Dispatch, SetStateAction } from 'react';
+import styled from 'styled-components';
+import { useSession, signOut } from 'next-auth/react';
+import localFont from 'next/font/local';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import Logo from '@/public/freeMarketLogo.png';
+import { chatDrawerState, collapseState, menuState } from '@/recoil/states';
+import { MenuTypes } from '@/types/Common/Common.interface';
+import ProfilePopOverContent from './Profile';
+import Notification from './Notification';
 
 const { Header } = Layout;
 
@@ -46,25 +34,24 @@ const HeaderPage = () => {
   const menuList: MenuTypes[] = useRecoilValue(menuState);
 
   const onClickLogo = () => {
-    router.push("/");
+    router.push('/');
   };
 
   useEffect(() => {
     setSelectedKeys([
-      menuList?.flatMap((e) => e.children)?.find((ele) => ele?.url === pathname)
-        ?.key,
+      menuList?.flatMap((e) => e.children)?.find((ele) => ele?.url === pathname)?.key,
     ]);
   }, [pathname]);
 
   const HeaderStyle: React.CSSProperties = {
-    position: "sticky",
+    position: 'sticky',
     top: 0,
     zIndex: 1,
-    width: "100%",
-    display: "flex",
-    alignItems: "center",
-    background: "#348485",
-    boxShadow: "0 1px 5px rgba(57, 63, 72, 0.2)",
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    background: '#348485',
+    boxShadow: '0 1px 5px rgba(57, 63, 72, 0.2)',
     padding: 16,
     height: 52,
   };
@@ -80,27 +67,27 @@ const HeaderPage = () => {
             selectedKeys={selectedKeys}
             items={menuList}
             style={{
-              width: "100%",
+              width: '100%',
               fontWeight: 700,
               fontSize: 15,
-              background: "#348485",
+              background: '#348485',
               height: 52,
-              alignItems: "center",
+              alignItems: 'center',
             }}
             onSelect={(e: any) => {
               setSelectedKeys([e?.key]);
               router.push(e?.item?.props?.url);
             }}
           />
-          {status != "loading" && (
+          {status !== 'loading' && (
             <>
               {session && (
                 <>
                   <div
                     style={{
                       marginRight: 20,
-                      display: "flex",
-                      alignItems: "center",
+                      display: 'flex',
+                      alignItems: 'center',
                     }}
                   >
                     <Badge dot>
@@ -108,31 +95,26 @@ const HeaderPage = () => {
                         onClick={() => setIsChatOpend(true)}
                         style={{
                           fontSize: 18,
-                          cursor: "pointer",
-                          color: "#fff",
+                          cursor: 'pointer',
+                          color: '#fff',
                         }}
                       />
                     </Badge>
                   </div>
-                  <Popover
-                    trigger="click"
-                    title="알림"
-                    content={Notification}
-                    placement="bottom"
-                  >
+                  <Popover trigger="click" title="알림" content={Notification} placement="bottom">
                     <div
                       style={{
                         marginRight: 20,
-                        display: "flex",
-                        alignItems: "center",
+                        display: 'flex',
+                        alignItems: 'center',
                       }}
                     >
                       <Badge dot>
                         <BellOutlined
                           style={{
                             fontSize: 20,
-                            cursor: "pointer",
-                            color: "#fff",
+                            cursor: 'pointer',
+                            color: '#fff',
                           }}
                         />
                       </Badge>
@@ -146,12 +128,12 @@ const HeaderPage = () => {
                     onOpenChange={() => setProfileOpen(!profileOpen)}
                     placement="bottom"
                   >
-                    <div style={{ alignItems: "center", display: "flex" }}>
+                    <div style={{ alignItems: 'center', display: 'flex' }}>
                       <Avatar
                         size={34}
                         icon={<UserOutlined />}
                         onClick={() => setProfileOpen(!profileOpen)}
-                        style={{ cursor: "pointer" }}
+                        style={{ cursor: 'pointer' }}
                       />
                     </div>
                   </Popover>
@@ -161,13 +143,13 @@ const HeaderPage = () => {
                 <>
                   <div
                     style={{
-                      textAlign: "center",
-                      display: "flex",
-                      alignItems: "center",
+                      textAlign: 'center',
+                      display: 'flex',
+                      alignItems: 'center',
                     }}
                   >
                     <StyledButton
-                      onClick={() => router.push("/auth/login")}
+                      onClick={() => router.push('/auth/login')}
                       style={{ width: 90, fontSize: 13, fontWeight: 700 }}
                     >
                       로그인
@@ -175,17 +157,17 @@ const HeaderPage = () => {
                   </div>
                   <div
                     style={{
-                      textAlign: "center",
+                      textAlign: 'center',
                       marginLeft: 10,
-                      display: "flex",
-                      alignItems: "center",
+                      display: 'flex',
+                      alignItems: 'center',
                     }}
                   >
                     <StyledButton
                       type="primary"
-                      onClick={() => router.push("/auth/join")}
+                      onClick={() => router.push('/auth/join')}
                       style={{
-                        background: "#003B3C",
+                        background: '#003B3C',
                         fontSize: 13,
                         fontWeight: 700,
                       }}
@@ -201,16 +183,14 @@ const HeaderPage = () => {
       </div>
       <div className="mobile-btn">
         <StyledLogo src={Logo} onClick={onClickLogo} alt="로고" />
-        <div
-          style={{ marginLeft: "auto", display: "flex", alignItems: "center" }}
-        >
-          {status != "loading" && (
+        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
+          {status !== 'loading' && (
             <>
               <div
                 style={{
                   marginRight: 20,
-                  display: "flex",
-                  alignItems: "center",
+                  display: 'flex',
+                  alignItems: 'center',
                 }}
               >
                 <Badge dot>
@@ -218,31 +198,26 @@ const HeaderPage = () => {
                     onClick={() => setIsChatOpend(true)}
                     style={{
                       fontSize: 18,
-                      cursor: "pointer",
-                      color: "#fff",
+                      cursor: 'pointer',
+                      color: '#fff',
                     }}
                   />
                 </Badge>
               </div>
-              <Popover
-                trigger="click"
-                title="알림"
-                content={Notification}
-                placement="bottom"
-              >
+              <Popover trigger="click" title="알림" content={Notification} placement="bottom">
                 <div
                   style={{
                     marginRight: 10,
-                    display: "flex",
-                    alignItems: "center",
+                    display: 'flex',
+                    alignItems: 'center',
                   }}
                 >
                   <Badge dot>
                     <BellOutlined
                       style={{
                         fontSize: 20,
-                        cursor: "pointer",
-                        color: "#fff",
+                        cursor: 'pointer',
+                        color: '#fff',
                       }}
                     />
                   </Badge>
@@ -253,10 +228,10 @@ const HeaderPage = () => {
                 icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                 onClick={() => setCollapsed(!collapsed)}
                 style={{
-                  fontSize: "10px",
+                  fontSize: '10px',
                   width: 42,
                   height: 48,
-                  color: "#fff",
+                  color: '#fff',
                 }}
               />
             </>

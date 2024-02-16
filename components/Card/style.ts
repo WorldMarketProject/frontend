@@ -1,5 +1,5 @@
-import { Card } from "antd";
-import styled, { css } from "styled-components";
+import { Card } from 'antd';
+import styled, { css } from 'styled-components';
 
 export const StyledTitleDiv = styled.div`
   && {

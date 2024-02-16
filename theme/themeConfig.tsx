@@ -1,6 +1,5 @@
-
 import type { ThemeConfig } from 'antd';
-import localFont from 'next/font/local'
+import localFont from 'next/font/local';
 // import { Noto_Sans_KR } from "next/font/google";
 
 // import localFont from 'next/font/local';
@@ -17,7 +16,7 @@ import localFont from 'next/font/local'
 
 // const notoSansKr = Noto_Sans_KR({
 //   // preload: true,
-//   subsets: ["latin"], 
+//   subsets: ["latin"],
 //   weight: ["100", "400", "600", "800"],
 // });
 
@@ -27,50 +26,50 @@ const suitVariable = localFont({
     {
       path: '../public/fonts/suit/SUIT-Thin.woff2',
       weight: '100',
-      style: 'Thin'
+      style: 'Thin',
     },
     {
       path: '../public/fonts/suit/SUIT-ExtraLight.woff2',
       weight: '200',
-      style: 'ExtraLight'
+      style: 'ExtraLight',
     },
     {
       path: '../public/fonts/suit/SUIT-Light.woff2',
       weight: '300',
-      style: 'Light'
+      style: 'Light',
     },
     {
       path: '../public/fonts/suit/SUIT-Regular.woff2',
       weight: '400',
-      style: 'Normal'
+      style: 'Normal',
     },
     {
       path: '../public/fonts/suit/SUIT-Medium.woff2',
       weight: '500',
-      style: 'Medium'
+      style: 'Medium',
     },
     {
       path: '../public/fonts/suit/SUIT-SemiBold.woff2',
       weight: '600',
-      style: 'SemiBold'
+      style: 'SemiBold',
     },
     {
       path: '../public/fonts/suit/SUIT-Bold.woff2',
       weight: '700',
-      style: 'Bold'
+      style: 'Bold',
     },
     {
       path: '../public/fonts/suit/SUIT-ExtraBold.woff2',
       weight: '800',
-      style: 'ExtraBold'
+      style: 'ExtraBold',
     },
     {
       path: '../public/fonts/suit/SUIT-Heavy.woff2',
       weight: '900',
-      style: 'Heavy'
+      style: 'Heavy',
     },
-  ]
-})
+  ],
+});
 
 const theme: ThemeConfig = {
   token: {
@@ -84,7 +83,7 @@ const theme: ThemeConfig = {
   components: {
     Table: {
       headerBg: '#fff',
-      fontSize: 13
+      fontSize: 13,
     },
     Carousel: {
       dotHeight: 13,

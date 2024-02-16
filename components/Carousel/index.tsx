@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import { Col, Row, Spin, Image as AntImage } from "antd";
-import * as S from "./style";
+import { Col, Row, Spin, Image as AntImage } from 'antd';
+import * as S from './style';
 
 const CarouselComponent = () => {
   const contents = [
     {
-      img: "/bike.webp",
+      img: '/bike.webp',
     },
     {
-      img: "/not-found.png",
+      img: '/not-found.png',
     },
     {
-      img: "/money.png",
+      img: '/money.png',
     },
   ];
 
@@ -29,17 +29,17 @@ const CarouselComponent = () => {
     <>
       <div>
         <Row>
-          <Col span={24} style={{ padding: "0 25px" }}>
+          <Col span={24} style={{ padding: '0 25px' }}>
             <S.StyledCarousel
               arrows
-              dotPosition={"bottom"}
+              dotPosition="bottom"
               speed={600}
               style={{
-                display: "flex",
-                justifyContent: "center",
-                textAlign: "center",
-                transition: "0.35s",
-                width: "100%",
+                display: 'flex',
+                justifyContent: 'center',
+                textAlign: 'center',
+                transition: '0.35s',
+                width: '100%',
                 height: 420,
               }}
               nextArrow={
@@ -55,11 +55,7 @@ const CarouselComponent = () => {
             >
               {contents?.map((e, i) => (
                 <div key={i}>
-                  <AntImage
-                    preview={{ mask: false }}
-                    src={e?.img}
-                    style={{ cursor: "pointer" }}
-                  />
+                  <AntImage preview={{ mask: false }} src={e?.img} style={{ cursor: 'pointer' }} />
                 </div>
               ))}
             </S.StyledCarousel>

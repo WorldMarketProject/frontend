@@ -1,30 +1,28 @@
-"use client";
+'use client';
 
-import { Suspense, useEffect } from "react";
-import { Alert, Button, message } from "antd";
-import { UserOutlined } from "@ant-design/icons";
-import styled from "styled-components";
-import Discord from "@/public/svg/discord.svg";
-import Mail from "@/public/svg/mail.svg";
-import MoneyImg from "@/public/money.png";
-import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
-import Image from "next/image";
-import TopMsg from "@/components/Login/TopMsg";
+import { Suspense, useEffect } from 'react';
+import { Alert, Button, message } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+import styled from 'styled-components';
+import { useRouter } from 'next/navigation';
+import { signIn } from 'next-auth/react';
+import Image from 'next/image';
+import Discord from '@/public/svg/discord.svg';
+import Mail from '@/public/svg/mail.svg';
+import MoneyImg from '@/public/money.png';
+import TopMsg from '@/components/Login/TopMsg';
 
-const Login = () => {
-  return <LoginComponent />;
-};
+const Login = () => <LoginComponent />;
 
 const LoginComponent = () => {
   const router = useRouter();
 
   return (
     <>
-      <Suspense fallback={<div></div>}>
+      <Suspense fallback={<div />}>
         <TopMsg />
       </Suspense>
-      <div style={{ textAlign: "center" }}>
+      <div style={{ textAlign: 'center' }}>
         <Title>자유시장 로그인</Title>
         <Explain>
           <div>자유시장에서는 자유롭게 거래할 수 있고,</div>
@@ -34,31 +32,25 @@ const LoginComponent = () => {
         <div style={{ marginBottom: 30, fontSize: 12 }}>
           <a href="https://kr.freepik.com/free-photo/3d-render-hand-dropping-golden-coins-on-white_36362346.htm#query=money&position=12&from_view=search&track=sph&uuid=bdc628c3-6add-49c4-9929-7f746b11d417">
             작가 upklyak
-          </a>{" "}
+          </a>{' '}
           출처 Freepik
         </div>
         <div style={{ marginTop: 10 }}>
           <RegisterButton
             type="primary"
             ghost
-            icon={<UserOutlined style={{ fontSize: 18, margin: "0 8px" }} />}
-            onClick={() => router.push("/auth/login/id")}
+            icon={<UserOutlined style={{ fontSize: 18, margin: '0 8px' }} />}
+            onClick={() => router.push('/auth/login/id')}
           >
             아이디로 로그인
           </RegisterButton>
         </div>
         <BtnGroup>
-          <StyledSpan
-            onClick={() => router.push("/auth/passwordIssue")}
-            style={{ marginLeft: 0 }}
-          >
+          <StyledSpan onClick={() => router.push('/auth/passwordIssue')} style={{ marginLeft: 0 }}>
             비밀번호 재설정
           </StyledSpan>
-          {/*  · <StyledSpan onClick={() => router.push('/auth/findAccount')}>계정 찾기</StyledSpan> */}{" "}
-          ·{" "}
-          <StyledSpan onClick={() => router.push("/auth/join")}>
-            회원가입
-          </StyledSpan>
+          {/*  · <StyledSpan onClick={() => router.push('/auth/findAccount')}>계정 찾기</StyledSpan> */}{' '}
+          · <StyledSpan onClick={() => router.push('/auth/join')}>회원가입</StyledSpan>
         </BtnGroup>
       </div>
     </>
