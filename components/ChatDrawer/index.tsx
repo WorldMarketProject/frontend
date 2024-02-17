@@ -1,21 +1,25 @@
 import { Avatar, Drawer, Empty } from 'antd';
 import { useRecoilState } from 'recoil';
 import { UserOutlined } from '@ant-design/icons';
+import { Dispatch, SetStateAction, useState } from 'react';
 import useIsMobile from '@/hooks/useIsMobile';
 import { chatDrawerState } from '@/recoil/states';
 import * as S from './style';
 
 const ChatDrawer = () => {
   const [isChatOpend, setIsChatOpend] = useRecoilState(chatDrawerState);
+  const [clickSeq, setClickSeq] = useState(null);
   const isMobile = useIsMobile();
 
   const chatList = [
     {
+      seq: 1,
       user_nm: 'testuser',
       time: '1시간 전',
       message: '구매 의향 있으신가요?',
     },
     {
+      seq: 2,
       user_nm: 'testuser2',
       time: '21분 전',
       message: '안녕하세요 😊',
@@ -29,14 +33,24 @@ const ChatDrawer = () => {
         width={isMobile ? '100%' : 420}
         open={isChatOpend}
         onClose={() => setIsChatOpend(false)}
+        styles={{
+          body: {
+            padding: 0,
+          },
+        }}
       >
-        {chatList?.length && (
+        {clickSeq && <button onClick={() => setClickSeq(null)}>초기화</button>}
+        {!clickSeq && (
           <>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 25 }}>
-              {chatList?.map((e: any, i: number) => (
-                <ChatElement key={i} e={e} />
-              ))}
-            </div>
+            {chatList?.length && (
+              <>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+                  {chatList?.map((e: any, i: number) => (
+                    <ChatElement key={i} e={e} setClickSeq={setClickSeq} />
+                  ))}
+                </div>
+              </>
+            )}
           </>
         )}
         {!chatList?.length && <Empty description="채팅이 존재하지 않습니다." />}
@@ -45,8 +59,14 @@ const ChatDrawer = () => {
   );
 };
 
-const ChatElement = ({ e }: { e: any }) => (
-  <div style={{ display: 'flex', gap: 10 }}>
+const ChatElement = ({
+  e,
+  setClickSeq,
+}: {
+  e: any;
+  setClickSeq: Dispatch<SetStateAction<any>>;
+}) => (
+  <S.StyledChatDiv aria-hidden="true" onClick={() => setClickSeq(e?.seq)}>
     <div>
       <Avatar
         style={{
@@ -74,7 +94,7 @@ const ChatElement = ({ e }: { e: any }) => (
       </div>
       <div>{e?.message}</div>
     </div>
-  </div>
+  </S.StyledChatDiv>
 );
 
 export default ChatDrawer;

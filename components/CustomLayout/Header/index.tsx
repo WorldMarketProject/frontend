@@ -186,43 +186,47 @@ const HeaderPage = () => {
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
           {status !== 'loading' && (
             <>
-              <div
-                style={{
-                  marginRight: 20,
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-              >
-                <Badge dot>
-                  <MessageOutlined
-                    onClick={() => setIsChatOpend(true)}
+              {session && (
+                <>
+                  <div
                     style={{
-                      fontSize: 18,
-                      cursor: 'pointer',
-                      color: '#fff',
+                      marginRight: 20,
+                      display: 'flex',
+                      alignItems: 'center',
                     }}
-                  />
-                </Badge>
-              </div>
-              <Popover trigger="click" title="알림" content={Notification} placement="bottom">
-                <div
-                  style={{
-                    marginRight: 10,
-                    display: 'flex',
-                    alignItems: 'center',
-                  }}
-                >
-                  <Badge dot>
-                    <BellOutlined
+                  >
+                    <Badge dot>
+                      <MessageOutlined
+                        onClick={() => setIsChatOpend(true)}
+                        style={{
+                          fontSize: 18,
+                          cursor: 'pointer',
+                          color: '#fff',
+                        }}
+                      />
+                    </Badge>
+                  </div>
+                  <Popover trigger="click" title="알림" content={Notification} placement="bottom">
+                    <div
                       style={{
-                        fontSize: 20,
-                        cursor: 'pointer',
-                        color: '#fff',
+                        marginRight: 10,
+                        display: 'flex',
+                        alignItems: 'center',
                       }}
-                    />
-                  </Badge>
-                </div>
-              </Popover>
+                    >
+                      <Badge dot>
+                        <BellOutlined
+                          style={{
+                            fontSize: 20,
+                            cursor: 'pointer',
+                            color: '#fff',
+                          }}
+                        />
+                      </Badge>
+                    </div>
+                  </Popover>
+                </>
+              )}
               <Button
                 type="text"
                 icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}

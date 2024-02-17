@@ -27,8 +27,10 @@ const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Header />
-      {bannerViewPages?.includes(pathname) && <Banner path={pathname} />}
-      <Content>{children}</Content>
+      <Content>
+        {bannerViewPages?.includes(pathname) && <Banner path={pathname} />}
+        {children}
+      </Content>
       <Footer />
       {isMobile && <MobileNav />}
       <ChatDrawer />
