@@ -2,7 +2,7 @@ import { useState, useEffect, ChangeEvent } from 'react';
 import axios from 'axios';
 import { Input, Space, Button } from 'antd';
 import styled from 'styled-components';
-import { loadSearchList } from '@/api/Api';
+// import { loadSearchList } from '@/api/Api';
 
 const { Search } = Input;
 
@@ -11,7 +11,7 @@ const SearchBar = () => {
   const [input, setInput] = useState('');
 
   useEffect(() => {
-    getSearchData(input);
+    // getSearchData(input);
   }, [input]);
 
   const getSearchData = async (input?: string) => {
@@ -22,11 +22,11 @@ const SearchBar = () => {
     const formData = {
       keyword: input,
     };
-    const result = await loadSearchList(formData);
-    if (result?.success) {
-      // console.log(result)
-      setData(result?.list);
-    }
+    // const result = await loadSearchList(formData);
+    // if (result?.success) {
+    //   // console.log(result)
+    //   setData(result?.list);
+    // }
   };
 
   const handleChanges = (e: ChangeEvent<HTMLInputElement>) => {
