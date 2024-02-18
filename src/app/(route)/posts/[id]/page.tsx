@@ -1,6 +1,6 @@
 'use client';
 
-import { Avatar, Col, Row } from 'antd';
+import { Avatar, Button, Col, Row } from 'antd';
 import Image from 'next/image';
 import styled from 'styled-components';
 import CardComponent from '@/components/Card';
@@ -52,6 +52,20 @@ const Posts = () => (
           <div style={{ fontWeight: 700, fontSize: 18, margin: '10px 0' }}>50,000원</div>
           <div dangerouslySetInnerHTML={{ __html: tempText }} />
           <div style={{ fontSize: 13, color: '#8697bf' }}>관심 137 ∙ 채팅 85 ∙ 조회 2450</div>
+        </Col>
+        <Col span={24}>
+          <Row gutter={[20, 20]}>
+            <Col span={8}>
+              <Button type="dashed" size="large" style={{ width: '100%' }}>
+                ♡ 찜하기
+              </Button>
+            </Col>
+            <Col span={8}>
+              <Button type="primary" size="large" style={{ width: '100%', fontWeight: 600 }}>
+                구매신청
+              </Button>
+            </Col>
+          </Row>
         </Col>
         <Col span={24} style={{ marginTop: 20 }}>
           <StyledTitleDiv>인기 있는 물품</StyledTitleDiv>

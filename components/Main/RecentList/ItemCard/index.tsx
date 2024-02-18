@@ -3,8 +3,9 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import styled, { css } from 'styled-components';
 import NoImg from '@/public/noimg.png';
+import { Skeleton } from 'antd';
 
-const ItemCard = ({ info }: { info?: any }) => {
+const ItemCard = ({ info, loading }: { info?: any; loading?: boolean }) => {
   const router = useRouter();
 
   return (
@@ -23,16 +24,25 @@ const ItemCard = ({ info }: { info?: any }) => {
           }}
         />
       </div>
-      <div style={{ margin: '10px 0', fontSize: 15 }}>
-        <span>{info?.title ?? '제목'}</span>
-      </div>
-      <div style={{ margin: '5px 0', fontWeight: 700, fontSize: 15 }}>
-        {info?.price ? Number(info?.price)?.toLocaleString() : 0}원
-      </div>
-      <div>{info?.region ?? '지역'}</div>
-      <div style={{ color: '#8b8581' }}>
-        <HeartOutlined /> {info?.like ?? 0} · <MessageOutlined /> {info?.msgCnt ?? 0}
-      </div>
+      {loading && (
+        <div>
+          <Skeleton active />
+        </div>
+      )}
+      {!loading && (
+        <>
+          <div style={{ margin: '15px 0', fontSize: 15 }}>
+            <span>{info?.title ?? '제목'}</span>
+          </div>
+          <div style={{ margin: '5px 0', fontWeight: 700, fontSize: 15 }}>
+            {info?.price ? Number(info?.price)?.toLocaleString() : 0}원
+          </div>
+          <div>{info?.region ?? '지역'}</div>
+          <div style={{ color: '#8b8581', marginTop: 10 }}>
+            <HeartOutlined /> {info?.like ?? 0} · <MessageOutlined /> {info?.msgCnt ?? 0}
+          </div>
+        </>
+      )}
     </StyledDiv>
   );
 };

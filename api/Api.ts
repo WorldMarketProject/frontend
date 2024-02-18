@@ -1,20 +1,5 @@
-import axiosInstance from "@/util/axiosInstance";
-import axios from "axios";
-
-/**
- * 메이플 인벤 DB 아이템목록 검색
- * @param formData keyword
- * @returns result
- */
-export const loadSearchList = async (formData: { keyword?: string }) => {
-  return await axios
-    .post(
-      `http://${process.env.NEXT_PUBLIC_BACKEND_URL}/api/search/inven/list`,
-      formData
-    )
-    .then((res) => res?.data)
-    .catch((err) => console.error(err));
-};
+import axiosInstance from '@/util/axiosInstance';
+import axios from 'axios';
 
 /**
  * 등록된 거래 목록
@@ -22,11 +7,8 @@ export const loadSearchList = async (formData: { keyword?: string }) => {
  * @returns result
  */
 export const loadTradeList = async (formData: { page?: number }) => {
-  return await axios
-    .post(
-      `http://${process.env.NEXT_PUBLIC_BACKEND_URL}/api/trade/list`,
-      formData
-    )
+  return await axiosInstance
+    .post(`http://${process.env.NEXT_PUBLIC_BACKEND_URL}/api/trade/list`, formData)
     .then((res) => res?.data)
     .catch((err) => console.error(err));
 };
@@ -42,6 +24,10 @@ export const loadStatusCodeList = async () => {
     .catch((err) => console.error(err));
 };
 
+/**
+ * 회원 가입
+ * @returns result
+ */
 export const putJoinData = async (formData: any) => {};
 
 /**
@@ -50,10 +36,7 @@ export const putJoinData = async (formData: any) => {};
  */
 export const login = async (formData: any) => {
   return await axios
-    .post(
-      `http://${process.env.NEXT_PUBLIC_BACKEND_URL}/api/user/login`,
-      formData
-    )
+    .post(`http://${process.env.NEXT_PUBLIC_BACKEND_URL}/api/user/login`, formData)
     .then((res) => res?.data)
     .catch((err) => console.error(err));
 };
@@ -64,10 +47,7 @@ export const login = async (formData: any) => {
  */
 export const getUserInfo = async (formData: any) => {
   return await axiosInstance
-    .post(
-      `http://${process.env.NEXT_PUBLIC_BACKEND_URL}/api/user/info`,
-      formData
-    )
+    .post(`http://${process.env.NEXT_PUBLIC_BACKEND_URL}/api/user/info`, formData)
     .then((res) => res?.data)
     .catch((err) => console.error(err));
 };
@@ -78,10 +58,33 @@ export const getUserInfo = async (formData: any) => {
  */
 export const join = async (formData: any) => {
   return await axios
-    .put(
-      `http://${process.env.NEXT_PUBLIC_BACKEND_URL}/api/user/sign`,
-      formData
-    )
+    .put(`http://${process.env.NEXT_PUBLIC_BACKEND_URL}/api/user/sign`, formData)
+    .then((res) => res?.data)
+    .catch((err) => console.error(err));
+};
+
+/**
+ * 자신의 거래목록
+ * @returns
+ * {
+ *    sell_list: 등록한 거래
+ *    buy_list: 신청한 거래
+ * }
+ */
+export const loadMemberTradeList = async (formData: any) => {
+  return await axiosInstance
+    .post(`http://${process.env.NEXT_PUBLIC_BACKEND_URL}/api/member/trade/list`, formData)
+    .then((res) => res?.data)
+    .catch((err) => console.error(err));
+};
+
+/**
+ * 회원정보 중복확인
+ * @returns result
+ */
+export const userCheck = async (formData: any) => {
+  return await axiosInstance
+    .post(`http://${process.env.NEXT_PUBLIC_BACKEND_URL}/api/user/check`, formData)
     .then((res) => res?.data)
     .catch((err) => console.error(err));
 };

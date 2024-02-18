@@ -150,16 +150,6 @@ const StyledSpan = styled.span`
   }
 `;
 
-const fetchData = async (formData: object) => {
-  const res = await fetch('/api/login', {
-    method: 'POST',
-    body: JSON.stringify(formData),
-  });
-  const result = await res.json();
-
-  return result?.data;
-};
-
 const StyledSpin = styled(Spin)`
   && {
     & .ant-spin-dot-item {
@@ -167,17 +157,3 @@ const StyledSpin = styled(Spin)`
     }
   }
 `;
-
-const fetchUserInfoData = async (token: string | null) => {
-  const formData = {
-    token,
-    type: undefined,
-  };
-  const res = await fetch('/api/userInfo', {
-    method: 'POST',
-    body: JSON.stringify(formData),
-  });
-  const result = await res.json();
-
-  return result?.data;
-};

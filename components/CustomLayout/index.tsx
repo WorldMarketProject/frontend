@@ -6,18 +6,21 @@ import StyledComponentsRegistryAnt from '@/lib/AntdRegistry';
 import StyledComponentsRegistry from '@/lib/Registry';
 import theme from '../../theme/themeConfig';
 import DefaultLayout from './DefaultLayout';
+import ReactQueryProvider from '@/lib/ReactQueryProvider';
 
 const CustomLayout = ({ children }: { children: React.ReactNode }) => (
   <SessionProvider>
-    <RecoilRootProvider>
-      <StyledComponentsRegistry>
-        <StyledComponentsRegistryAnt>
-          <ConfigProvider theme={theme} locale={koKr}>
-            <DefaultLayout>{children}</DefaultLayout>
-          </ConfigProvider>
-        </StyledComponentsRegistryAnt>
-      </StyledComponentsRegistry>
-    </RecoilRootProvider>
+    <ReactQueryProvider>
+      <RecoilRootProvider>
+        <StyledComponentsRegistry>
+          <StyledComponentsRegistryAnt>
+            <ConfigProvider theme={theme} locale={koKr}>
+              <DefaultLayout>{children}</DefaultLayout>
+            </ConfigProvider>
+          </StyledComponentsRegistryAnt>
+        </StyledComponentsRegistry>
+      </RecoilRootProvider>
+    </ReactQueryProvider>
   </SessionProvider>
 );
 

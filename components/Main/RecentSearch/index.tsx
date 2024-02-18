@@ -1,8 +1,15 @@
-import { DeleteOutlined, SearchOutlined } from '@ant-design/icons';
+import { CloseCircleOutlined, DeleteOutlined, SearchOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
+import { useRouter } from 'next/navigation';
+import { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const RecentSearch = ({ type }: { type: string }) => {
+  const router = useRouter();
+  const storageName = type + 'search';
+  const [nowSearchData, setNowSearchData] = useState<string[]>([]);
+  const [searchValue, setSearchValue] = useState<string>('');
+
   const typeName = () => {
     if (type === 'used') {
       return '물품';
@@ -16,14 +23,41 @@ const RecentSearch = ({ type }: { type: string }) => {
     return '물품';
   };
 
-  const tempArray = [
-    { title: '프라다 가방' },
-    { title: '전기자전거' },
-    { title: '나이키 신발' },
-    { title: 'PlayStation 5' },
-    { title: 'Galaxy S24 Ultra' },
-    { title: 'iPhone 15 Pro Max' },
-  ];
+  const recentSearchUpdateGoList = (e: KeyboardEvent<HTMLInputElement>) => {
+    let arr = [...nowSearchData];
+    const newData = e.currentTarget.value;
+    if (nowSearchData?.find((ele: string) => ele === newData)) {
+      arr = nowSearchData?.filter((ele: string) => ele !== newData);
+    }
+    const newSearchData = [...arr, newData];
+    localStorage.setItem(storageName, newSearchData?.join('&&'));
+    setNowSearchData(newSearchData);
+    setSearchValue('');
+
+    const path = type === 'used' ? '' : '/' + type;
+
+    // 페이지 이동
+    router.push(`${path}/list?keyword=${newData}`);
+  };
+
+  const deleteSearchValue = (deleteString: string | null) => {
+    if (deleteString) {
+      const newSearchData = nowSearchData?.filter((e: string) => e !== deleteString);
+      setNowSearchData(newSearchData);
+      localStorage.setItem(storageName, newSearchData?.join('&&'));
+    }
+  };
+
+  const resetSearchData = () => {
+    setNowSearchData([]);
+    localStorage.setItem(storageName, '');
+  };
+
+  useEffect(() => {
+    const localStorageData = localStorage.getItem(storageName);
+    const data = localStorageData?.length ? localStorageData?.split('&&') : [];
+    setNowSearchData(data);
+  }, []);
 
   return (
     <div>
@@ -31,16 +65,38 @@ const RecentSearch = ({ type }: { type: string }) => {
         prefix={<SearchOutlined />}
         placeholder={`${typeName()}을 검색해보세요`}
         size="large"
-        style={{ marginBottom: 20 /* background: '#f2f3f6' */ }}
+        value={searchValue}
+        onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchValue(e.target.value)}
+        onKeyUp={(e: KeyboardEvent<HTMLInputElement>) =>
+          e.key === 'Enter' && e.currentTarget.value && recentSearchUpdateGoList(e)
+        }
+        style={{ marginBottom: 20 }}
         allowClear
       />
-      <div style={{ fontWeight: 700, marginBottom: 10 }}>최근 검색어</div>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div style={{ fontWeight: 700, marginBottom: 10 }}>최근 검색어</div>
+        {nowSearchData?.length ? (
+          <div aria-hidden="true" onClick={resetSearchData} style={{ cursor: 'pointer' }}>
+            전체 지우기
+          </div>
+        ) : null}
+      </div>
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-        {tempArray?.map((e: { title: string }, i: number) => (
-          <SearchDiv key={i} aria-hidden="true">
-            {e?.title} <DeleteOutlined style={{ color: '#b5a999' }} />
+        {nowSearchData?.map((e: string | null, i: number) => (
+          <SearchDiv key={i} aria-hidden="true" onClick={() => e && setSearchValue(e)}>
+            {e}{' '}
+            <CloseCircleOutlined
+              onClick={(event) => {
+                event.stopPropagation();
+                deleteSearchValue(e);
+              }}
+              style={{ color: '#b5a999' }}
+            />
           </SearchDiv>
         ))}
+        {!nowSearchData?.length && (
+          <div style={{ color: 'grey' }}>최근 검색어가 존재하지 않습니다.</div>
+        )}
       </div>
     </div>
   );

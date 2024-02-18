@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
-import { putJoinData } from '@/api/Api';
+import { putJoinData, userCheck } from '@/api/Api';
 
 interface IValuesType {
   user_id?: string;
@@ -26,6 +26,8 @@ const onFinish = async (values: IValuesType, router: AppRouterInstance) => {
     message.warning('개인정보 수집 및 이용에 동의하신 후 가입이 가능합니다.');
     return;
   }
+
+  // TODO: 중복확인 디바운스
 
   if (values?.user_pw !== values?.user_pw2) {
     message.warning('비밀번호가 일치하지 않습니다.');
@@ -56,6 +58,16 @@ const Join = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  const valiedateId = async (type: string, key: string) => {
+    const formData = { type, key };
+    const result = await userCheck(formData);
+    if (result?.success) {
+      return Promise.resolve();
+    } else {
+      return Promise.reject(new Error(result?.message || ''));
+    }
+  };
+
   return (
     <div style={{ marginTop: 30 }}>
       <Title>아이디로 회원가입</Title>
@@ -73,10 +85,14 @@ const Join = () => {
         <Form.Item<FieldType>
           name="user_id"
           rules={[
+            // {
+            //   required: true,
+            //   message: '형식에 맞게 아이디를 입력해주세요.',
+            // },
             {
-              required: true,
-              message: '형식에 맞게 아이디를 입력해주세요.',
-              type: 'email',
+              validator: async (_, value) => {
+                await valiedateId('user_id', value);
+              },
             },
           ]}
           hasFeedback
@@ -122,7 +138,14 @@ const Join = () => {
         </StyledTitleDiv>
         <Form.Item<FieldType>
           name="user_nick"
-          rules={[{ required: true, message: '닉네임을 입력해주세요.' }]}
+          rules={[
+            // { required: true, message: '닉네임을 입력해주세요.' },
+            {
+              validator: async (_, value) => {
+                await valiedateId('user_nick', value);
+              },
+            },
+          ]}
           hasFeedback
           validateTrigger="onBlur"
         >
@@ -144,7 +167,14 @@ const Join = () => {
         <StyledTitleDiv>전화번호</StyledTitleDiv>
         <Form.Item<FieldType>
           name="user_mobile"
-          rules={[{ required: true, message: '전화번호를 입력해주세요.' }]}
+          rules={[
+            // { required: true, message: '전화번호를 입력해주세요.' },
+            {
+              validator: async (_, value) => {
+                await valiedateId('user_mobile', value);
+              },
+            },
+          ]}
           hasFeedback
           validateTrigger="onBlur"
         >
@@ -302,13 +332,3 @@ const StyledSpan = styled.span`
     }
   }
 `;
-
-const fetchData = async (formData: object) => {
-  const res = await fetch('/api/join', {
-    method: 'PUT',
-    body: JSON.stringify(formData),
-  });
-  const result = await res.json();
-
-  return result?.data;
-};

@@ -26,13 +26,18 @@ const ChatDrawer = () => {
     },
   ];
 
+  const closeDrawer = () => {
+    setIsChatOpend(false);
+    setClickSeq(null);
+  };
+
   return (
     <>
       <Drawer
         title={<S.StyledTitleDiv>채팅</S.StyledTitleDiv>}
         width={isMobile ? '100%' : 420}
         open={isChatOpend}
-        onClose={() => setIsChatOpend(false)}
+        onClose={closeDrawer}
         styles={{
           body: {
             padding: 0,

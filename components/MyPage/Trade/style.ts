@@ -1,3 +1,4 @@
+import { Spin } from 'antd';
 import styled from 'styled-components';
 
 export const StyledBoxDiv = styled.div`
@@ -12,4 +13,13 @@ export const SubTitle = styled.div`
   margin-bottom: 15px;
   font-weight: 600;
   color: #348485;
+`;
+
+export const StyledSpin = styled(Spin)`
+  && {
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
