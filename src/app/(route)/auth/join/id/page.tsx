@@ -63,7 +63,8 @@ const Join = () => {
     const result = await userCheck(formData);
     if (result?.success) {
       return Promise.resolve();
-    } else {
+    }
+    if (!result?.success) {
       return Promise.reject(new Error(result?.message || ''));
     }
   };

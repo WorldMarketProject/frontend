@@ -2,8 +2,8 @@ import { HeartOutlined, MessageOutlined } from '@ant-design/icons';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import styled, { css } from 'styled-components';
-import NoImg from '@/public/noimg.png';
 import { Skeleton } from 'antd';
+import NoImg from '@/public/noimg.png';
 
 const ItemCard = ({ info, loading }: { info?: any; loading?: boolean }) => {
   const router = useRouter();

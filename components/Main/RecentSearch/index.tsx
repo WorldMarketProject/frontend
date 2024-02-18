@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const RecentSearch = ({ type }: { type: string }) => {
   const router = useRouter();
-  const storageName = type + 'search';
+  const storageName = `${type}search`;
   const [nowSearchData, setNowSearchData] = useState<string[]>([]);
   const [searchValue, setSearchValue] = useState<string>('');
 
@@ -34,7 +34,7 @@ const RecentSearch = ({ type }: { type: string }) => {
     setNowSearchData(newSearchData);
     setSearchValue('');
 
-    const path = type === 'used' ? '' : '/' + type;
+    const path = type === 'used' ? '' : `/${type}`;
 
     // 페이지 이동
     router.push(`${path}/list?keyword=${newData}`);

@@ -45,6 +45,7 @@
     "react/destructuring-assignment": "warn",
     "jsx-a11y/label-has-associated-control": "warn",
     "no-nested-ternary": "warn",
-    "no-plusplus": "off"
+    "no-plusplus": "off",
+    "react/prop-types": 0
   }
 }

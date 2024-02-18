@@ -1,7 +1,7 @@
+import { Button } from 'antd';
 import { useQuery } from '@tanstack/react-query';
 import * as S from './style';
 import { getUserInfo } from '@/api/Api';
-import { Button } from 'antd';
 
 const Account = () => {
   const { data, isSuccess, isError, isLoading } = useQuery({

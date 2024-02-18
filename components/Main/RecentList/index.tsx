@@ -1,10 +1,9 @@
-import { Col, Row, Select, Table, TableColumnsType, Tag } from 'antd';
+import { Col, Row, Select, Table, TableColumnsType, Tag, SelectProps } from 'antd';
 import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { loadStatusCodeList, loadTradeList } from '@/api/Api';
 import { DataType, ElementType } from '@/types/RecentList/RecentList.interface';
 import ItemCard from './ItemCard';
-import { useQuery } from '@tanstack/react-query';
-import { SelectProps } from 'antd';
 
 type TagRender = SelectProps['tagRender'];
 
@@ -75,7 +74,7 @@ const RecentList = () => {
     <Row gutter={[15, 20]}>
       {new Array(8).map((e: any, i: number) => (
         <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
-          <ItemCard key={i} loading={true} />
+          <ItemCard key={i} loading />
         </Col>
       ))}
     </Row>
