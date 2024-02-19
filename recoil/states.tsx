@@ -92,3 +92,11 @@ export const chatDrawerState = atom<boolean>({
   key: `isChatOpend/${v1()}`,
   default: false,
 });
+
+/**
+ * 토큰 만료 모달 열림 여부
+ */
+export const isTokenModalOpen = atom<boolean>({
+  key: `isTokenModalOpen/${v1()}`,
+  default: false,
+});

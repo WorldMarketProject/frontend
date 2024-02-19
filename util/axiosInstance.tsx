@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
-import { getSession } from 'next-auth/react';
+import { getSession, signOut } from 'next-auth/react';
 
 const requestSuccessHandler = async (config: InternalAxiosRequestConfig) => {
   const session = await getSession();
@@ -11,15 +11,18 @@ const requestSuccessHandler = async (config: InternalAxiosRequestConfig) => {
   return config;
 };
 
-const requestErrorHandler = (error: Error | AxiosError) => {
+const requestErrorHandler = (error: Error | AxiosError) =>
   // console.log('request 실패 : ', error);
-  return Promise.reject(error);
-};
-
+  Promise.reject(error);
 const responseSuccessHandler = (response: AxiosResponse) => {
-  // console.log('response 성공: ', response);
+  const isLogout = response?.data?.logout;
+  // console.log('response 성공: ', response?.data?.logout);
+  if (isLogout) {
+    signOut({ callbackUrl: '/?token=false' });
+  }
   return response;
 };
+
 const responseErrorHandler = (error: Error | AxiosError) => {
   if (axios.isAxiosError(error)) {
     const { method, url } = error.config as InternalAxiosRequestConfig;
@@ -38,7 +41,7 @@ const axiosInstance = axios.create({
     'Content-Type': 'application/json',
   },
   timeout: 6000,
-  timeoutErrorMessage: `요청이 너무 깁니다.`,
+  timeoutErrorMessage: '요청이 너무 깁니다.',
 });
 
 axiosInstance.interceptors.request.use(requestSuccessHandler, requestErrorHandler);

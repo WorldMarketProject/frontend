@@ -103,7 +103,7 @@ const RecentList = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-      <Row gutter={[10, 10]}>
+      <Row gutter={[10, 5]}>
         <Col xs={24} sm={24} md={24} lg={5} xl={5} xxl={5}>
           <div style={{ fontWeight: 700, marginBottom: 10 }}>거래 종류</div>
           <div style={{ marginBottom: 10 }}>
