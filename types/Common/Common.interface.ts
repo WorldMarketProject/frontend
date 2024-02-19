@@ -9,3 +9,10 @@ export interface MenuTypes {
   url: string;
   children?: MenuTypes[];
 }
+
+export interface ModalPropsTypes {
+  children: React.ReactNode;
+  title: string;
+  isOpen: boolean;
+  closeModal: () => void;
+}
