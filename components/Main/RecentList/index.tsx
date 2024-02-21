@@ -1,9 +1,11 @@
 import { Col, Row, Select, Table, TableColumnsType, Tag, SelectProps } from 'antd';
 import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { usePathname } from 'next/navigation';
 import { loadStatusCodeList, loadTradeList } from '@/api/Api';
 import { DataType, ElementType } from '@/types/RecentList/RecentList.interface';
 import ItemCard from './ItemCard';
+import RealtyJobCard from './RealtyJobCard';
 
 type TagRender = SelectProps['tagRender'];
 
@@ -19,6 +21,10 @@ const RecentList = () => {
   });
   const [data, setData] = useState([]);
   const [codeList, setCodeList] = useState<ElementType[]>([]);
+  const pathname = usePathname();
+  const isNotTrans = !(
+    pathname?.split('/')?.[1] === 'realty' || pathname?.split('/')?.[1] === 'jobs'
+  );
 
   const tagRender: TagRender = (props) => {
     const { label, value, closable, onClose } = props;
@@ -101,40 +107,60 @@ const RecentList = () => {
     region: '울산 남구 신정동',
   };
 
+  const sampleInfo3 = {
+    imgUrl: '/t1.jpeg',
+    title: '물건 찾는거 도와주실분',
+    unit: '일급',
+    price: 60000,
+    region: '울산 동구 전하동',
+  };
+
+  const sampleInfo4 = {
+    imgUrl: '/t2.jpeg',
+    title: '독서실 청소 알바 구합니다',
+    unit: '월급',
+    price: 750000,
+    region: '울산 남구 신정동',
+  };
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
       <Row gutter={[10, 5]}>
-        <Col xs={24} sm={24} md={24} lg={5} xl={5} xxl={5}>
-          <div style={{ fontWeight: 700, marginBottom: 10 }}>거래 종류</div>
-          <div style={{ marginBottom: 10 }}>
-            <Select
-              defaultValue=""
-              options={[
-                { value: '', label: '중고거래' },
-                { value: '/realty', label: '부동산' },
-                { value: '/jobs', label: '아르바이트' },
-              ]}
-              // onChange={(e: string) => router.push(`${e}/reg-item`)}
-              style={{ width: '100%' }}
-            />
-          </div>
-        </Col>
-        <Col xs={24} sm={24} md={24} lg={7} xl={7} xxl={7}>
-          <div style={{ fontWeight: 700, marginBottom: 10 }}>거래 상태</div>
-          <div style={{ marginBottom: 10 }}>
-            <Select
-              mode="multiple"
-              defaultValue={['ing', 'reserve', 'complete']}
-              tagRender={tagRender}
-              options={[
-                { value: 'ing', label: '판매중' },
-                { value: 'reserve', label: '예약중' },
-                { value: 'complete', label: '거래완료' },
-              ]}
-              style={{ width: '100%' }}
-            />
-          </div>
-        </Col>
+        {isNotTrans && (
+          <>
+            <Col xs={24} sm={24} md={24} lg={5} xl={5} xxl={5}>
+              <div style={{ fontWeight: 700, marginBottom: 10 }}>거래 종류</div>
+              <div style={{ marginBottom: 10 }}>
+                <Select
+                  defaultValue=""
+                  options={[
+                    { value: '', label: '중고거래' },
+                    { value: '/realty', label: '부동산' },
+                    { value: '/jobs', label: '아르바이트' },
+                  ]}
+                  // onChange={(e: string) => router.push(`${e}/reg-item`)}
+                  style={{ width: '100%' }}
+                />
+              </div>
+            </Col>
+            <Col xs={24} sm={24} md={24} lg={7} xl={7} xxl={7}>
+              <div style={{ fontWeight: 700, marginBottom: 10 }}>거래 상태</div>
+              <div style={{ marginBottom: 10 }}>
+                <Select
+                  mode="multiple"
+                  defaultValue={['ing', 'reserve', 'complete']}
+                  tagRender={tagRender}
+                  options={[
+                    { value: 'ing', label: '판매중' },
+                    { value: 'reserve', label: '예약중' },
+                    { value: 'complete', label: '거래완료' },
+                  ]}
+                  style={{ width: '100%' }}
+                />
+              </div>
+            </Col>
+          </>
+        )}
         <Col xs={24} sm={24} md={24} lg={5} xl={5} xxl={5}>
           <div style={{ fontWeight: 700, marginBottom: 10 }}>지역</div>
           <div style={{ marginBottom: 10 }}>
@@ -149,30 +175,62 @@ const RecentList = () => {
       {isLoading ? <LoadingList /> : ''}
       <div>
         <Row gutter={[15, 20]}>
-          <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
-            <ItemCard info={sampleInfo1} loading={isLoading} />
-          </Col>
-          <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
-            <ItemCard info={sampleInfo2} loading={isLoading} />
-          </Col>
-          <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
-            <ItemCard loading={isLoading} />
-          </Col>
-          <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
-            <ItemCard loading={isLoading} />
-          </Col>
-          <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
-            <ItemCard loading={isLoading} />
-          </Col>
-          <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
-            <ItemCard loading={isLoading} />
-          </Col>
-          <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
-            <ItemCard loading={isLoading} />
-          </Col>
-          <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
-            <ItemCard loading={isLoading} />
-          </Col>
+          {isNotTrans && (
+            <>
+              <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
+                <ItemCard info={sampleInfo1} loading={isLoading} />
+              </Col>
+              <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
+                <ItemCard info={sampleInfo2} loading={isLoading} />
+              </Col>
+              <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
+                <ItemCard loading={isLoading} />
+              </Col>
+              <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
+                <ItemCard loading={isLoading} />
+              </Col>
+              <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
+                <ItemCard loading={isLoading} />
+              </Col>
+              <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
+                <ItemCard loading={isLoading} />
+              </Col>
+              <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
+                <ItemCard loading={isLoading} />
+              </Col>
+              <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
+                <ItemCard loading={isLoading} />
+              </Col>
+            </>
+          )}
+          {!isNotTrans && (
+            <>
+              <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
+                <RealtyJobCard info={sampleInfo3} loading={isLoading} />
+              </Col>
+              <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
+                <RealtyJobCard info={sampleInfo4} loading={isLoading} />
+              </Col>
+              <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
+                <RealtyJobCard loading={isLoading} />
+              </Col>
+              <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
+                <RealtyJobCard loading={isLoading} />
+              </Col>
+              <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
+                <RealtyJobCard loading={isLoading} />
+              </Col>
+              <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
+                <RealtyJobCard loading={isLoading} />
+              </Col>
+              <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
+                <RealtyJobCard loading={isLoading} />
+              </Col>
+              <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
+                <RealtyJobCard loading={isLoading} />
+              </Col>
+            </>
+          )}
         </Row>
       </div>
     </div>

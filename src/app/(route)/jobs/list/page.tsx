@@ -1,6 +1,6 @@
 'use client';
 
-import { CameraOutlined } from '@ant-design/icons';
+import { CameraOutlined, SearchOutlined } from '@ant-design/icons';
 import { Button, Col, Input, Row, Select } from 'antd';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Title from '@/components/Title';
@@ -18,7 +18,7 @@ const List = () => {
         {!keyword && <div>아르바이트 목록입니다.</div>}
         {keyword && (
           <div>
-            <b>{keyword}</b>의 검색결과
+            <SearchOutlined /> <b>{keyword}</b>의 검색결과
           </div>
         )}
       </div>

@@ -42,7 +42,7 @@ export const menuState = atom<MenuTypes[]>({
         },
         {
           key: '1-1',
-          label: '거래 목록',
+          label: '매물 목록',
           url: '/realty/list',
         },
         {
@@ -64,7 +64,7 @@ export const menuState = atom<MenuTypes[]>({
         },
         {
           key: '2-1',
-          label: '거래 목록',
+          label: '아르바이트 목록',
           url: '/jobs/list',
         },
         {

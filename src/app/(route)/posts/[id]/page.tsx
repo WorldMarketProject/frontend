@@ -32,38 +32,42 @@ const Posts = () => (
   <Row gutter={[30, 30]}>
     <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
       <Row gutter={[30, 30]}>
-        <Col span={24}>
+        <Col xs={24} sm={24} md={24} lg={24} xl={12} xxl={12}>
           <CarouselComponent />
         </Col>
-        <Col span={24}>
-          <div style={{ marginBottom: 5, display: 'flex', gap: 10 }}>
-            <div>
-              <Avatar size={40} icon={<Image src={UnknownAvatar} alt="unknown" />} />
+        <Col xs={24} sm={24} md={24} lg={24} xl={12} xxl={12}>
+          <Row gutter={[0, 20]}>
+            <div style={{ marginBottom: 5, display: 'flex', gap: 10 }}>
+              <div>
+                <Avatar size={40} icon={<Image src={UnknownAvatar} alt="unknown" />} />
+              </div>
+              <StyledOutDiv>
+                <StyledOutDiv style={{ fontSize: 14 }}>작성자</StyledOutDiv>
+                <StyledOutDiv style={{ fontSize: 13, color: 'grey' }}>
+                  울산 남구 신정동
+                </StyledOutDiv>
+              </StyledOutDiv>
             </div>
-            <StyledOutDiv>
-              <StyledOutDiv style={{ fontSize: 14 }}>작성자</StyledOutDiv>
-              <StyledOutDiv style={{ fontSize: 13, color: 'grey' }}>울산 남구 신정동</StyledOutDiv>
-            </StyledOutDiv>
-          </div>
-        </Col>
-        <Col span={24}>
-          <div style={{ fontWeight: 700, fontSize: 18 }}>전기자전거</div>
-          <div style={{ fontSize: 13, color: '#8697bf' }}>가구/인테리어 ∙ 1일 전</div>
-          <div style={{ fontWeight: 700, fontSize: 18, margin: '10px 0' }}>50,000원</div>
-          <div dangerouslySetInnerHTML={{ __html: tempText }} />
-          <div style={{ fontSize: 13, color: '#8697bf' }}>관심 137 ∙ 채팅 85 ∙ 조회 2450</div>
-        </Col>
-        <Col span={24}>
-          <Row gutter={[20, 20]}>
-            <Col span={8}>
-              <Button type="dashed" size="large" style={{ width: '100%' }}>
-                ♡ 찜하기
-              </Button>
+            <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
+              <div style={{ fontWeight: 700, fontSize: 18 }}>전기자전거</div>
+              <div style={{ fontSize: 13, color: '#7f9bca' }}>가구/인테리어 ∙ 1일 전</div>
+              <div style={{ fontWeight: 700, fontSize: 18, margin: '10px 0' }}>50,000원</div>
+              <div dangerouslySetInnerHTML={{ __html: tempText }} />
+              <div style={{ fontSize: 13, color: '#7f9bca' }}>관심 137 ∙ 채팅 85 ∙ 조회 2450</div>
             </Col>
-            <Col span={8}>
-              <Button type="primary" size="large" style={{ width: '100%', fontWeight: 600 }}>
-                구매신청
-              </Button>
+            <Col span={24}>
+              <Row gutter={[20, 20]}>
+                <Col span={12}>
+                  <Button type="dashed" size="large" style={{ width: '100%' }}>
+                    ♡ 찜하기
+                  </Button>
+                </Col>
+                <Col span={12}>
+                  <Button type="primary" size="large" style={{ width: '100%', fontWeight: 600 }}>
+                    구매신청
+                  </Button>
+                </Col>
+              </Row>
             </Col>
           </Row>
         </Col>
