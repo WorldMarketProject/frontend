@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # 누군가 만들어 놓은 Actions 활용 시 uses 키워드 사용
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       # step의 이름
       - name: execute remote ssh and deploy frontend
