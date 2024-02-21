@@ -20,6 +20,7 @@ jobs:
           # ssh 접속 실패 타임아웃 - 보통 40초는 안걸린다
           timeout: 40s
           script: |
+            whoami
             cd FreeMarket-FE
             sudo git pull origin develop
             # 아래 두 작업이 없으면 pm2에 대해서 command not found 에러가 뜰 수 있음
