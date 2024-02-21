@@ -14,7 +14,7 @@ const Banner = ({ path }: { path: string }) => {
           <>
             <div>자유시장</div>
             <div>
-              회원 간 <StyledSpan1>중고거래123</StyledSpan1>
+              회원 간 <StyledSpan1>중고거래</StyledSpan1>
             </div>
           </>
         ),
