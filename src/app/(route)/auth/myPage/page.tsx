@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import Trade from '@/components/MyPage/Trade';
 import Title from '@/components/Title';
 import Account from '@/components/MyPage/Account';
+import Chat from '@/components/MyPage/Chat';
 
 const MyPage = () => {
   const router = useRouter();
@@ -22,6 +23,11 @@ const MyPage = () => {
     {
       key: '2',
       label: '거래 관리',
+      children: null,
+    },
+    {
+      key: '3',
+      label: '채팅 관리',
       children: null,
     },
   ];
@@ -53,6 +59,7 @@ const MyPage = () => {
           <Title content={list?.find((e) => e.key === selectedKey)?.label} />
           {selectedKey === '1' && <Account />}
           {selectedKey === '2' && <Trade />}
+          {selectedKey === '3' && <Chat />}
         </div>
       </div>
     </div>
