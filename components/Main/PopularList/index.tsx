@@ -1,8 +1,8 @@
 import { Col, Row, Select, Table, TableColumnsType } from 'antd';
 import { useEffect, useState } from 'react';
-import { loadStatusCodeList, loadTradeList } from '@/api/Api';
 import { DataType, ElementType } from '@/types/RecentList/RecentList.interface';
 import ItemCard from './ItemCard';
+import { loadStatusCodeList, loadTradeList } from '@/api/trade/api';
 
 const PopularList = () => {
   const [data, setData] = useState([]);

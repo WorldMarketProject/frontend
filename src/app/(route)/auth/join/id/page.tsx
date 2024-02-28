@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
-import { putJoinData, userCheck } from '@/api/Api';
+import { putJoinData, userCheck } from '@/api/user/api';
 
 interface IValuesType {
   user_id?: string;

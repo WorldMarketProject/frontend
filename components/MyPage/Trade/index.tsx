@@ -2,8 +2,8 @@ import { Divider, Empty, Spin, Table, TableColumnsType, Tabs, Tag } from 'antd';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import * as S from './style';
-import { loadMemberTradeList } from '@/api/Api';
 import { TradeDataType } from '@/types/Table/Table.interface';
+import { loadMemberTradeList } from '@/api/member/api';
 
 const items = [
   {

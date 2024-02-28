@@ -32,12 +32,12 @@ const ItemCard = ({ info, loading }: { info?: any; loading?: boolean }) => {
       {!loading && (
         <>
           <div style={{ margin: '15px 0', fontSize: 15 }}>
-            <span>{info?.title ?? '제목'}</span>
+            <span>{info?.tr_title ?? '제목'}</span>
           </div>
           <div style={{ margin: '5px 0', fontWeight: 700, fontSize: 15 }}>
-            {info?.price ? Number(info?.price)?.toLocaleString() : 0}원
+            {info?.tr_price ? Number(info?.tr_price)?.toLocaleString() : 0}원
           </div>
-          <div style={{ color: 'grey' }}>{info?.region ?? '지역'}</div>
+          <div style={{ color: 'grey' }}>{info?.tr_addr ?? '지역'}</div>
           <div style={{ color: '#8b8581', marginTop: 10 }}>
             <HeartOutlined /> {info?.like ?? 0} · <MessageOutlined /> {info?.msgCnt ?? 0}
           </div>

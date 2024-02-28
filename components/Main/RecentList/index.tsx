@@ -2,10 +2,10 @@ import { Col, Row, Select, Table, TableColumnsType, Tag, SelectProps } from 'ant
 import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { usePathname } from 'next/navigation';
-import { loadStatusCodeList, loadTradeList } from '@/api/Api';
 import { DataType, ElementType } from '@/types/RecentList/RecentList.interface';
 import ItemCard from './ItemCard';
 import RealtyJobCard from './RealtyJobCard';
+import { loadStatusCodeList, loadTradeList } from '@/api/trade/api';
 
 type TagRender = SelectProps['tagRender'];
 
@@ -17,7 +17,7 @@ const RecentList = () => {
     isLoading,
   } = useQuery({
     queryKey: ['tradeList'],
-    queryFn: () => loadTradeList({ page: 1 }),
+    queryFn: () => loadTradeList({ tr_t_seq: 1 }),
   });
   const [data, setData] = useState([]);
   const [codeList, setCodeList] = useState<ElementType[]>([]);
@@ -78,7 +78,7 @@ const RecentList = () => {
 
   const LoadingList = () => (
     <Row gutter={[15, 20]}>
-      {new Array(8).map((e: any, i: number) => (
+      {new Array(8).fill('').map((e: any, i: number) => (
         <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
           <ItemCard key={i} loading />
         </Col>
@@ -177,7 +177,12 @@ const RecentList = () => {
         <Row gutter={[15, 20]}>
           {isNotTrans && (
             <>
-              <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
+              {tradeData?.list?.map((e: any, i: any) => (
+                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
+                  <ItemCard info={e} loading={isLoading} />
+                </Col>
+              ))}
+              {/* <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
                 <ItemCard info={sampleInfo1} loading={isLoading} />
               </Col>
               <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
@@ -200,7 +205,7 @@ const RecentList = () => {
               </Col>
               <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
                 <ItemCard loading={isLoading} />
-              </Col>
+              </Col> */}
             </>
           )}
           {!isNotTrans && (
