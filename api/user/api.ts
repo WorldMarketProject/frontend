@@ -46,3 +46,13 @@ export const userCheck = async (formData: any) =>
     .post(`http://${process.env.NEXT_PUBLIC_BACKEND_URL}/api/user/check`, formData)
     .then((res) => res?.data)
     .catch((err) => console.error(err));
+
+/**
+ * 회원정보수정
+ * @returns result
+ */
+export const userModify = async (formData: any) =>
+  axiosInstance
+    .put(`http://${process.env.NEXT_PUBLIC_BACKEND_URL}/api/user/modify`, formData)
+    .then((res) => res?.data)
+    .catch((err) => console.error(err));

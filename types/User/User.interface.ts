@@ -1,3 +1,5 @@
+import { Dayjs } from 'dayjs';
+
 export interface UserInfoTypes {
   user_seq: number;
   user_id: string;
@@ -33,4 +35,21 @@ export interface ChangeDataTypes {
   introduce?: string;
   del_file_yn?: string;
   file_cd?: string;
+}
+
+export interface EditInfoTypes {
+  token: string;
+  user_seq: number;
+  user_id: string;
+  user_nm: string;
+  user_nick: string;
+  user_birth: string | Dayjs;
+  user_mobile: string;
+  user_s_seq: number;
+  user_s_nm: string;
+  user_l_seq: number;
+  user_l_nm: string;
+  mobile_cert_yn: string;
+  use_yn: string;
+  reg_dt: string;
 }
