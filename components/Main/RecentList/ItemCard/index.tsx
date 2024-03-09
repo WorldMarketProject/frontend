@@ -9,7 +9,10 @@ const ItemCard = ({ info, loading }: { info?: any; loading?: boolean }) => {
   const router = useRouter();
 
   return (
-    <StyledDiv onClick={() => router.push(info?.link ?? '/posts/1')} $isImg={!info?.imgUrl}>
+    <StyledDiv
+      onClick={() => router.push(info?.link ?? `/posts/${info?.tr_seq}`)}
+      $isImg={!info?.imgUrl}
+    >
       <div style={{ borderRadius: 16, overflow: 'hidden', textAlign: 'center', lineHeight: 22 }}>
         <Image
           src={info?.imgUrl ?? NoImg}

@@ -99,10 +99,10 @@ const PopularList = () => {
     }
   };
 
-  useEffect(() => {
-    getTradeList();
-    getCodeList();
-  }, []);
+  // useEffect(() => {
+  //   getTradeList();
+  //   getCodeList();
+  // }, []);
 
   const sampleInfo1 = {
     imgUrl: '/bike.webp',

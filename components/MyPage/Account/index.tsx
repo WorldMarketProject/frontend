@@ -66,8 +66,9 @@ const Account = () => {
       message.info('수정되었습니다.');
       closeModal();
     },
-    onError: () => {
+    onError: (err) => {
       message.error('에러 발생');
+      console.error(err);
     },
     onSettled: () => {},
   });
