@@ -29,6 +29,7 @@ const InputLabel = ({
       <DatePicker
         value={dayjs(editInfo?.[name])}
         onChange={(e) => setEditInfo({ ...editInfo, [name]: e })}
+        style={{ width: '100%' }}
       />
     ) : (
       <Input
@@ -60,7 +61,7 @@ const Account = () => {
 
   const { mutate: userModifyMutate } = useMutation({
     mutationFn: () =>
-      userModify({ ...editInfo, user_birth: editInfo?.user_birth?.format('YYYY-MM-DD') }),
+      userModify({ ...editInfo, user_birth: dayjs(editInfo?.user_birth)?.format('YYYY-MM-DD') }),
     onSuccess: () => {
       refetch();
       message.info('수정되었습니다.');
@@ -137,8 +138,10 @@ const Account = () => {
       </S.StyledBoxDiv>
       <Modal title="회원 정보 수정" isOpen={isOpen} closeModal={closeModal}>
         <div style={{ margin: '30px 0' }}>
-          <div>회원 정보를 정말</div>
-          <div>수정하시겠습니까?</div>
+          <div>
+            <b>회원 정보를 수정하시겠습니까?</b>
+          </div>
+          <div>확인 버튼을 누르면 정보가 반영됩니다.</div>
         </div>
         <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
           <Button

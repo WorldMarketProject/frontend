@@ -79,7 +79,7 @@ const RecentList = () => {
   const LoadingList = () => (
     <Row gutter={[15, 20]}>
       {new Array(8).fill('').map((e: any, i: number) => (
-        <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
+        <Col key={i} xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
           <ItemCard key={i} loading />
         </Col>
       ))}
@@ -178,7 +178,7 @@ const RecentList = () => {
           {isNotTrans && (
             <>
               {tradeData?.list?.map((e: any, i: any) => (
-                <Col xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
+                <Col key={i} xs={12} sm={12} md={12} lg={8} xl={8} xxl={6}>
                   <ItemCard info={e} loading={isLoading} />
                 </Col>
               ))}

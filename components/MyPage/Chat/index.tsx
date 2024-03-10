@@ -78,13 +78,25 @@ const Chat = () => {
     isLoading ? (
       <S.StyledSpin />
     ) : (
-      <Table rowKey={(record) => record?.tr_seq} columns={columns} dataSource={data?.sell_list} />
+      <Table
+        rowKey={(record) => record?.tr_seq}
+        pagination={{ pageSize: 5 }}
+        columns={columns}
+        dataSource={data?.sell_list}
+        locale={{ emptyText: '목록이 존재하지 않습니다.' }}
+      />
     );
   const BuyList = () =>
     isLoading ? (
       <S.StyledSpin />
     ) : (
-      <Table rowKey={(record) => record?.tr_seq} columns={columns} dataSource={data?.buy_list} />
+      <Table
+        rowKey={(record) => record?.tr_seq}
+        pagination={{ pageSize: 5 }}
+        columns={columns}
+        dataSource={data?.buy_list}
+        locale={{ emptyText: '목록이 존재하지 않습니다.' }}
+      />
     );
 
   return (
@@ -97,11 +109,11 @@ const Chat = () => {
       />
       <S.SubTitle>등록한 {title} 목록</S.SubTitle>
       <S.StyledBoxDiv>
-        {data?.sell_list?.length ? <SellList /> : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />}
+        <SellList />
       </S.StyledBoxDiv>
       <S.SubTitle>신청한 {title} 목록</S.SubTitle>
       <S.StyledBoxDiv>
-        {data?.buy_list?.length ? <BuyList /> : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />}
+        <BuyList />
       </S.StyledBoxDiv>
     </>
   );

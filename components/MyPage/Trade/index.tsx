@@ -7,15 +7,15 @@ import { loadMemberTradeList } from '@/api/member/api';
 
 const items = [
   {
-    key: '',
+    key: 'TRADE',
     label: '중고거래',
   },
   {
-    key: 'realty',
+    key: 'HOUST',
     label: '부동산',
   },
   {
-    key: 'jobs',
+    key: 'JOB',
     label: '아르바이트',
   },
 ];
@@ -67,7 +67,7 @@ const Trade = () => {
     queryKey: ['memberTradeList'],
     queryFn: loadMemberTradeList,
   });
-  const [activeKey, setActiveKey] = useState('');
+  const [activeKey, setActiveKey] = useState('TRADE');
   const title = items?.find((e: any) => e?.key === activeKey)?.label;
 
   const onChange = (key: string) => {
@@ -78,13 +78,25 @@ const Trade = () => {
     isLoading ? (
       <S.StyledSpin />
     ) : (
-      <Table rowKey={(record) => record?.tr_seq} columns={columns} dataSource={data?.sell_list} />
+      <Table
+        rowKey={(record) => record?.tr_seq}
+        pagination={{ pageSize: 5 }}
+        columns={columns}
+        dataSource={data?.sell_list?.filter((e: any) => e?.tr_t_code === activeKey)}
+        locale={{ emptyText: '목록이 존재하지 않습니다.' }}
+      />
     );
   const BuyList = () =>
     isLoading ? (
       <S.StyledSpin />
     ) : (
-      <Table rowKey={(record) => record?.tr_seq} columns={columns} dataSource={data?.buy_list} />
+      <Table
+        rowKey={(record) => record?.tr_seq}
+        pagination={{ pageSize: 5 }}
+        columns={columns}
+        dataSource={data?.buy_list?.filter((e: any) => e?.tr_t_code === activeKey)}
+        locale={{ emptyText: '목록이 존재하지 않습니다.' }}
+      />
     );
 
   return (
@@ -97,11 +109,11 @@ const Trade = () => {
       />
       <S.SubTitle>등록한 {title} 목록</S.SubTitle>
       <S.StyledBoxDiv>
-        {data?.sell_list?.length ? <SellList /> : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />}
+        <SellList />
       </S.StyledBoxDiv>
       <S.SubTitle>신청한 {title} 목록</S.SubTitle>
       <S.StyledBoxDiv>
-        {data?.buy_list?.length ? <BuyList /> : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />}
+        <BuyList />
       </S.StyledBoxDiv>
     </>
   );
