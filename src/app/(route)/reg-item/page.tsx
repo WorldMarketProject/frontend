@@ -1,16 +1,35 @@
 'use client';
 
 import { CameraOutlined } from '@ant-design/icons';
-import { Modal, Button, Col, Input, Row, Select } from 'antd';
+import { Modal, Button, Col, Input, Row, Select, InputNumber, message, DatePicker } from 'antd';
 import { useRouter } from 'next/navigation';
 import DaumPostcode from 'react-daum-postcode';
 import { ChangeEvent, useState } from 'react';
+import dayjs from 'dayjs';
+import { useMutation } from '@tanstack/react-query';
 import Title from '@/components/Title';
+import { putTrade } from '@/api/trade/api';
 
 const RegItem = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  const [data, setData] = useState<any>({});
+  const [addressData, setAddressData] = useState<any>({});
+  const [formData, setFormData] = useState<any>({ tr_t_seq: 1 });
+
+  const { mutate: tradeMutate } = useMutation({
+    mutationFn: () =>
+      putTrade({ ...formData, limit_dt: dayjs(formData?.limit_dt)?.format('YYYY-MM-DD') }),
+    onSuccess: () => {
+      // refetch();
+      message.info('정상적으로 등록 되었습니다.');
+      router.push('/list');
+    },
+    onError: (err) => {
+      message.error('에러 발생');
+      console.error(err);
+    },
+    onSettled: () => {},
+  });
 
   // 주소 검색 모달
   const onToggleModal = () => {
@@ -26,7 +45,7 @@ const RegItem = () => {
     // 상세주소 앞 2단어 제외하고 저장 ('서울 강남구' 제외하고 저장)
     const splitAddress = data.address.split(' ').splice(2).join(' ');
     const address = data?.address;
-    setData({ ...data, address1: address });
+    setFormData({ ...formData, tr_addr: address });
     onToggleModal(); // 주소창은 자동으로 사라지므로 모달만 꺼주면
   };
 
@@ -36,6 +55,20 @@ const RegItem = () => {
 
   const handleCancel = () => {
     onToggleModal();
+  };
+
+  // 거래 등록 클릭
+  const onClickRegTrade = async () => {
+    const essentials = ['tr_title', 'tr_content', 'tr_price', 'tr_addr'];
+
+    for (let i = 0; i < essentials?.length; i++) {
+      if (!formData?.[essentials?.[i]]) {
+        message.warning('필수 입력란을 모두 채워주세요.');
+        return;
+      }
+    }
+
+    tradeMutate();
   };
 
   return (
@@ -58,24 +91,58 @@ const RegItem = () => {
           </div>
         </Col>
         <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
-          <div style={{ fontWeight: 700, marginBottom: 10 }}>제목</div>
-          <Input placeholder="제목을 입력해주세요." style={{ width: '100%' }} />
+          <div style={{ fontWeight: 700, marginBottom: 10 }}>
+            제목 <span style={{ color: 'red' }}>(*)</span>
+          </div>
+          <Input
+            placeholder="제목을 입력해주세요."
+            value={formData?.tr_title}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setFormData({ ...formData, tr_title: e.target.value })
+            }
+            style={{ width: '100%' }}
+          />
         </Col>
         <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
-          <div style={{ fontWeight: 700, marginBottom: 10 }}>제목</div>
+          <div style={{ fontWeight: 700, marginBottom: 10 }}>
+            내용 <span style={{ color: 'red' }}>(*)</span>
+          </div>
           <Input.TextArea
             placeholder="내용을 입력해주세요."
+            value={formData?.tr_content}
+            onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+              setFormData({ ...formData, tr_content: e.target.value })
+            }
             style={{ width: '100%', height: 180, resize: 'none' }}
           />
         </Col>
-        <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
-          <div style={{ fontWeight: 700, marginBottom: 10 }}>주소</div>
+        <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
+          <div style={{ fontWeight: 700, marginBottom: 10 }}>
+            가격 <span style={{ color: 'red' }}>(*)</span>
+          </div>
+          <InputNumber
+            placeholder="가격을 입력해주세요."
+            value={formData?.tr_price}
+            min={0}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setFormData({ ...formData, tr_price: e })
+            }
+            style={{ width: '100%' }}
+          />
+          <div style={{ marginTop: 10, fontSize: 13, color: '#B3B3B3' }}>
+            ※ 가격은 <b>0원 이상</b> 입력해주세요.
+          </div>
+        </Col>
+        <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
+          <div style={{ fontWeight: 700, marginBottom: 10 }}>
+            주소 <span style={{ color: 'red' }}>(*)</span>
+          </div>
           <div style={{ display: 'flex' }}>
             <Input
               placeholder="주소를 입력해주세요."
-              value={data?.address1}
+              value={formData?.tr_addr}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setData({ ...data, address1: e.target.value })
+                setFormData({ ...formData, tr_addr: e.target.value })
               }
               style={{ flex: 1 }}
             />
@@ -88,9 +155,14 @@ const RegItem = () => {
             </Button>
           </div>
         </Col>
-        <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
-          <div style={{ fontWeight: 700, marginBottom: 10 }}>상세 주소</div>
-          <Input placeholder="상세 주소를 입력해주세요." style={{ width: '100%' }} />
+        <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
+          <div style={{ fontWeight: 700, marginBottom: 10 }}>마감일</div>
+          <DatePicker
+            placeholder="날짜을 선택해주세요."
+            value={formData?.limit_dt}
+            onChange={(e: dayjs.Dayjs | null) => setFormData({ ...formData, limit_dt: e })}
+            style={{ width: '100%' }}
+          />
         </Col>
         <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
           <div style={{ fontWeight: 700, marginBottom: 10 }}>
@@ -116,7 +188,11 @@ const RegItem = () => {
           </div>
         </Col>
         <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={24} style={{ textAlign: 'right' }}>
-          <Button type="primary" style={{ width: 180, height: 45, fontWeight: 600 }}>
+          <Button
+            type="primary"
+            onClick={onClickRegTrade}
+            style={{ width: 180, height: 45, fontWeight: 600 }}
+          >
             등록하기
           </Button>
         </Col>

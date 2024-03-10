@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import styled, { css } from 'styled-components';
 import { Skeleton } from 'antd';
 import NoImg from '@/public/noimg.png';
+import CodeTag from '@/components/CodeTag';
 
 const ItemCard = ({ info, loading }: { info?: any; loading?: boolean }) => {
   const router = useRouter();
@@ -34,7 +35,10 @@ const ItemCard = ({ info, loading }: { info?: any; loading?: boolean }) => {
       )}
       {!loading && (
         <>
-          <div style={{ margin: '15px 0', fontSize: 15 }}>
+          <div style={{ margin: '10px 0' }}>
+            <CodeTag code={info?.tr_s_code} />
+          </div>
+          <div style={{ marginBottom: 5, fontSize: 15 }}>
             <span>{info?.tr_title ?? '제목'}</span>
           </div>
           <div style={{ margin: '5px 0', fontWeight: 700, fontSize: 15 }}>

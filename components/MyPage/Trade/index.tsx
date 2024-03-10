@@ -1,6 +1,7 @@
 import { Divider, Empty, Spin, Table, TableColumnsType, Tabs, Tag } from 'antd';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import * as S from './style';
 import { TradeDataType } from '@/types/Table/Table.interface';
 import { loadMemberTradeList } from '@/api/member/api';
@@ -63,6 +64,7 @@ const columns: TableColumnsType<TradeDataType> = [
 ];
 
 const Trade = () => {
+  const router = useRouter();
   const { data, isSuccess, isError, isLoading } = useQuery({
     queryKey: ['memberTradeList'],
     queryFn: loadMemberTradeList,
@@ -81,6 +83,9 @@ const Trade = () => {
       <Table
         rowKey={(record) => record?.tr_seq}
         pagination={{ pageSize: 5 }}
+        onRow={(record, rowIndex) => ({
+          onClick: () => router.push(`/posts/${record.tr_seq}`),
+        })}
         columns={columns}
         dataSource={data?.sell_list?.filter((e: any) => e?.tr_t_code === activeKey)}
         locale={{ emptyText: '목록이 존재하지 않습니다.' }}

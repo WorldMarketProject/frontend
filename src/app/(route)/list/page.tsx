@@ -13,9 +13,9 @@ const List = () => {
 
   return (
     <>
-      <Title content="상품 목록" />
+      <Title content="거래 목록" />
       <div style={{ marginBottom: 20, fontSize: 16 }}>
-        {!keyword && <div>상품 목록입니다.</div>}
+        {!keyword && <div>거래 목록입니다.</div>}
         {keyword && (
           <div>
             <SearchOutlined /> <b>{keyword}</b>의 검색결과

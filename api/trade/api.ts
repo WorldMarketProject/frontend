@@ -32,3 +32,13 @@ export const loadStatusCodeList = async () =>
     .get(`http://${process.env.NEXT_PUBLIC_BACKEND_URL}/api/trade/status/code`)
     .then((res) => res?.data)
     .catch((err) => console.error(err));
+
+/**
+ * 거래 등록
+ * @returns result
+ */
+export const putTrade = async (formData: any) =>
+  axiosInstance
+    .put(`http://${process.env.NEXT_PUBLIC_BACKEND_URL}/api/trade/put`, formData)
+    .then((res) => res?.data)
+    .catch((err) => console.error(err));

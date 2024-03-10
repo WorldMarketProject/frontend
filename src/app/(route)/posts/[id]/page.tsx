@@ -15,6 +15,8 @@ import PopularList from '@/components/Main/PopularList';
 import { loadTradeDetail } from '@/api/trade/api';
 import 'moment/locale/ko';
 import { useModal } from '@/hooks/useModal';
+import NoImg from '@/public/noimg.png';
+import CodeTag from '@/components/CodeTag';
 
 const Posts = ({ params }: { params: { id: number } }) => {
   const router = useRouter();
@@ -45,7 +47,35 @@ const Posts = ({ params }: { params: { id: number } }) => {
       <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
         <Row gutter={[30, 30]}>
           <Col xs={24} sm={24} md={24} lg={24} xl={12} xxl={12}>
-            <CarouselComponent />
+            {tradeData?.files?.length !== 0 && <CarouselComponent />}
+            {tradeData?.files?.length === 0 && (
+              <div
+                style={{
+                  height: 300,
+                  background: '#D7DBE1',
+                  borderRadius: 16,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <div>
+                  <Image
+                    src={NoImg}
+                    alt="sample image"
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    style={{
+                      width: 100,
+                      height: 100,
+                      objectFit: 'cover',
+                    }}
+                  />
+                  <div style={{ textAlign: 'center', color: 'grey' }}>등록된 이미지 없음</div>
+                </div>
+              </div>
+            )}
           </Col>
           <Col xs={24} sm={24} md={24} lg={24} xl={12} xxl={12}>
             <Row gutter={[0, 20]}>
@@ -63,6 +93,9 @@ const Posts = ({ params }: { params: { id: number } }) => {
                 </StyledOutDiv>
               </div>
               <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
+                <div style={{ marginBottom: 15 }}>
+                  <CodeTag code={tradeData?.detail?.tr_s_code} />
+                </div>
                 <div style={{ fontWeight: 700, fontSize: 18 }}>{tradeData?.detail?.tr_title}</div>
                 <div style={{ fontSize: 13, color: '#7f9bca' }}>
                   {tradeData?.detail?.tr_t_nm} ∙ {moment(tradeData?.detail?.reg_dt).fromNow()}
@@ -86,7 +119,12 @@ const Posts = ({ params }: { params: { id: number } }) => {
                     </Button>
                   </Col>
                   <Col span={12}>
-                    <Button type="primary" size="large" style={{ width: '100%', fontWeight: 600 }}>
+                    <Button
+                      type="primary"
+                      size="large"
+                      style={{ width: '100%', fontWeight: 600 }}
+                      disabled={tradeData?.detail?.tr_s_code !== 'WAIT'}
+                    >
                       구매신청
                     </Button>
                   </Col>

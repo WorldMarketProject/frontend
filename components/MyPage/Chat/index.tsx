@@ -4,6 +4,7 @@ import { useState } from 'react';
 import * as S from './style';
 import { TradeDataType } from '@/types/Table/Table.interface';
 import { loadMemberTradeList } from '@/api/member/api';
+import CodeTag from '@/components/CodeTag';
 
 const items = [
   {
@@ -26,27 +27,7 @@ const columns: TableColumnsType<TradeDataType> = [
     dataIndex: 'tr_s_nm',
     key: 'tr_s_nm',
     align: 'center',
-    render: (value, record, index) => {
-      const code = record?.tr_s_code;
-      const color = () => {
-        if (code === 'ING') {
-          return 'blue';
-        }
-        if (code === 'COMPLETE') {
-          return 'green';
-        }
-        if (code === 'CANCLE') {
-          return 'volcano';
-        }
-      };
-      return (
-        <>
-          <Tag color={color()} style={{ marginInlineEnd: 0 }}>
-            {value}
-          </Tag>
-        </>
-      );
-    },
+    render: (value, record, index) => <CodeTag code={record?.tr_s_code} />,
   },
   {
     title: '제목',

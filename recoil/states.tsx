@@ -25,7 +25,7 @@ export const menuState = atom<MenuTypes[]>({
         },
         {
           key: '0-2',
-          label: '판매 등록',
+          label: '거래 등록',
           url: '/reg-item',
         },
       ],
