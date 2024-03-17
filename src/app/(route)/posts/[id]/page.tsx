@@ -1,6 +1,6 @@
 'use client';
 
-import { Avatar, Button, Col, Modal, Row } from 'antd';
+import { Alert, Avatar, Button, Col, Modal, Row } from 'antd';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { useQuery } from '@tanstack/react-query';
@@ -46,7 +46,7 @@ const Posts = ({ params }: { params: { id: number } }) => {
     <Row gutter={[30, 30]}>
       <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
         <Row gutter={[30, 30]}>
-          <Col xs={24} sm={24} md={24} lg={24} xl={12} xxl={12}>
+          <Col xs={24} sm={24} md={24} lg={24} xl={16} xxl={16}>
             {tradeData?.files?.length !== 0 && <CarouselComponent />}
             {tradeData?.files?.length === 0 && (
               <div
@@ -76,23 +76,21 @@ const Posts = ({ params }: { params: { id: number } }) => {
                 </div>
               </div>
             )}
-          </Col>
-          <Col xs={24} sm={24} md={24} lg={24} xl={12} xxl={12}>
-            <Row gutter={[0, 20]}>
-              <div style={{ marginBottom: 5, display: 'flex', gap: 10 }}>
-                <div>
-                  <Avatar size={40} icon={<Image src={UnknownAvatar} alt="unknown" />} />
-                </div>
-                <StyledOutDiv>
-                  <StyledOutDiv style={{ fontSize: 14 }}>
-                    {tradeData?.detail?.user_nick}
-                  </StyledOutDiv>
-                  <StyledOutDiv style={{ fontSize: 13, color: 'grey' }}>
-                    {tradeData?.detail?.tr_addr}
-                  </StyledOutDiv>
-                </StyledOutDiv>
-              </div>
+            <Row gutter={[20, 20]}>
               <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
+                <div style={{ margin: '20px 0', display: 'flex', gap: 10 }}>
+                  <div>
+                    <Avatar size={40} icon={<Image src={UnknownAvatar} alt="unknown" />} />
+                  </div>
+                  <StyledOutDiv>
+                    <StyledOutDiv style={{ fontSize: 14 }}>
+                      {tradeData?.detail?.user_nick}
+                    </StyledOutDiv>
+                    <StyledOutDiv style={{ fontSize: 13, color: 'grey' }}>
+                      {tradeData?.detail?.tr_addr}
+                    </StyledOutDiv>
+                  </StyledOutDiv>
+                </div>
                 <div style={{ marginBottom: 15 }}>
                   <CodeTag code={tradeData?.detail?.tr_s_code} />
                 </div>
@@ -111,24 +109,45 @@ const Posts = ({ params }: { params: { id: number } }) => {
                   관심 0 ∙ 채팅 0 ∙ 조회 0
                 </div>
               </Col>
+            </Row>
+          </Col>
+          <Col xs={24} sm={24} md={24} lg={24} xl={8} xxl={8}>
+            <Row gutter={[0, 20]}>
               <Col span={24}>
-                <Row gutter={[20, 20]}>
-                  <Col span={12}>
-                    <Button type="dashed" size="large" style={{ width: '100%' }}>
-                      ♡ 찜하기
-                    </Button>
-                  </Col>
-                  <Col span={12}>
-                    <Button
-                      type="primary"
-                      size="large"
-                      style={{ width: '100%', fontWeight: 600 }}
-                      disabled={tradeData?.detail?.tr_s_code !== 'WAIT'}
-                    >
-                      구매신청
-                    </Button>
-                  </Col>
-                </Row>
+                <CardComponent
+                  content={
+                    <Row gutter={[20, 20]}>
+                      <Col span={24}>
+                        <Button type="dashed" size="large" style={{ width: '100%' }}>
+                          ♡ 찜하기
+                        </Button>
+                      </Col>
+                      <Col span={24}>
+                        <Button
+                          type="primary"
+                          size="large"
+                          style={{ width: '100%', fontWeight: 600 }}
+                          disabled={tradeData?.detail?.tr_s_code !== 'WAIT'}
+                        >
+                          구매신청
+                        </Button>
+                      </Col>
+                    </Row>
+                  }
+                />
+              </Col>
+              <Col span={24}>
+                <Alert
+                  description={
+                    <div>
+                      해당 거래를 진행하고 싶으시다면 상단의 <b>구매신청</b> 버튼을 눌러보세요.
+                      판매자가 확인하면 채팅을 하실 수 있습니다.
+                    </div>
+                  }
+                  type="info"
+                  showIcon
+                  style={{ background: '#fff', borderColor: '#ddd' }}
+                />
               </Col>
             </Row>
           </Col>
