@@ -56,6 +56,17 @@ const HeaderPage = () => {
     height: 52,
   };
 
+  const filteredMenuList = menuList.map((menu) => ({
+    key: menu.key,
+    label: <span>{menu.label}</span>,
+    onTitleClick: menu.key.length === 1 ? () => router.push(menu.url) : undefined, // key가 한 자리면 router.push
+    children: menu.children?.map((child) => ({
+      key: child.key,
+      label: child.label,
+      url: child.url,
+    })),
+  }));
+
   return (
     <StyledHeader style={HeaderStyle}>
       <div className="pc-menu-btn">
@@ -65,7 +76,7 @@ const HeaderPage = () => {
             theme="dark"
             mode="horizontal"
             selectedKeys={selectedKeys}
-            items={menuList}
+            items={filteredMenuList}
             style={{
               width: '100%',
               fontWeight: 700,

@@ -46,7 +46,7 @@ const Posts = ({ params }: { params: { id: number } }) => {
     <Row gutter={[30, 30]}>
       <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
         <Row gutter={[30, 30]}>
-          <Col xs={24} sm={24} md={24} lg={24} xl={16} xxl={16}>
+          <Col xs={24} sm={24} md={24} lg={24} xl={15} xxl={15}>
             {tradeData?.files?.length !== 0 && <CarouselComponent />}
             {tradeData?.files?.length === 0 && (
               <div
@@ -94,14 +94,14 @@ const Posts = ({ params }: { params: { id: number } }) => {
                 <div style={{ marginBottom: 15 }}>
                   <CodeTag code={tradeData?.detail?.tr_s_code} />
                 </div>
-                <div style={{ fontWeight: 700, fontSize: 18 }}>{tradeData?.detail?.tr_title}</div>
+                <div style={{ fontWeight: 800, fontSize: 24 }}>{tradeData?.detail?.tr_title}</div>
                 <div style={{ fontSize: 13, color: '#7f9bca' }}>
                   {tradeData?.detail?.tr_t_nm} ∙ {moment(tradeData?.detail?.reg_dt).fromNow()}
                 </div>
                 <div style={{ marginTop: 10, color: '#D72837' }}>
                   마감일: {tradeData?.detail?.limit_dt}
                 </div>
-                <div style={{ fontWeight: 700, fontSize: 18, margin: '10px 0' }}>
+                <div style={{ fontWeight: 800, fontSize: 28, margin: '10px 0' }}>
                   {Number(tradeData?.detail?.tr_price)?.toLocaleString()}원
                 </div>
                 <div dangerouslySetInnerHTML={{ __html: tradeData?.detail?.tr_content }} />
@@ -111,37 +111,37 @@ const Posts = ({ params }: { params: { id: number } }) => {
               </Col>
             </Row>
           </Col>
-          <Col xs={24} sm={24} md={24} lg={24} xl={8} xxl={8}>
+          <Col xs={24} sm={24} md={24} lg={24} xl={9} xxl={9}>
             <Row gutter={[0, 20]}>
               <Col span={24}>
                 <CardComponent
                   content={
                     <Row gutter={[20, 20]}>
                       <Col span={24}>
-                        <Button type="dashed" size="large" style={{ width: '100%' }}>
+                        <StyledButton type="dashed" size="large">
                           ♡ 찜하기
-                        </Button>
+                        </StyledButton>
                       </Col>
                       <Col span={24}>
-                        <Button
+                        <StyledButton
                           type="primary"
                           size="large"
-                          style={{ width: '100%', fontWeight: 600 }}
+                          style={{ fontWeight: 600 }}
                           disabled={tradeData?.detail?.tr_s_code !== 'WAIT'}
                         >
                           구매신청
-                        </Button>
+                        </StyledButton>
                       </Col>
                     </Row>
                   }
                 />
               </Col>
               <Col span={24}>
-                <Alert
+                <StyledAlert
                   description={
                     <div>
-                      해당 거래를 진행하고 싶으시다면 상단의 <b>구매신청</b> 버튼을 눌러보세요.
-                      판매자가 확인하면 채팅을 하실 수 있습니다.
+                      거래를 진행하고 싶으시다면 상단의 <b>구매신청</b> 버튼을 눌러보세요. 판매자가
+                      확인하면 채팅을 하실 수 있습니다.
                     </div>
                   }
                   type="info"
@@ -194,5 +194,16 @@ const StyledTitleDiv = styled.div`
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 13px;
+  }
+`;
+
+const StyledButton = styled(Button)`
+  width: 100%;
+  height: 50px !important;
+`;
+
+const StyledAlert = styled(Alert)`
+  & .ant-alert-icon {
+    color: #348485 !important;
   }
 `;

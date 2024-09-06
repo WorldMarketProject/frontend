@@ -12,6 +12,9 @@ export const menuState = atom<MenuTypes[]>({
       key: '0',
       label: '중고거래',
       url: '/',
+      // onTitleClick: () => {
+      //   console.log('123');
+      // },
       children: [
         {
           key: '0-0',

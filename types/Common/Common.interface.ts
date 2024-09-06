@@ -7,6 +7,7 @@ export interface MenuTypes {
   key: string;
   label: string;
   url: string;
+  onTitleClick?: () => void;
   children?: MenuTypes[];
 }
 

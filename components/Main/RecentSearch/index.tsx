@@ -76,21 +76,20 @@ const RecentSearch = ({ type }: { type: string }) => {
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div style={{ fontWeight: 700, marginBottom: 10 }}>최근 검색어</div>
         {nowSearchData?.length ? (
-          <div aria-hidden="true" onClick={resetSearchData} style={{ cursor: 'pointer' }}>
+          <StyledDeleteDiv aria-hidden="true" onClick={resetSearchData}>
             전체 지우기
-          </div>
+          </StyledDeleteDiv>
         ) : null}
       </div>
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
         {nowSearchData?.map((e: string | null, i: number) => (
           <SearchDiv key={i} aria-hidden="true" onClick={() => e && setSearchValue(e)}>
             {e}{' '}
-            <CloseCircleOutlined
+            <StyledCloseCircleOutlined
               onClick={(event) => {
                 event.stopPropagation();
                 deleteSearchValue(e);
               }}
-              style={{ color: '#b5a999' }}
             />
           </SearchDiv>
         ))}
@@ -113,4 +112,24 @@ const SearchDiv = styled.div`
     cursor: pointer;
   }
   transition: 0.3s;
+`;
+
+const StyledCloseCircleOutlined = styled(CloseCircleOutlined)`
+  && {
+    color: #b5a999;
+    :hover {
+      color: red;
+      transition: ease-in-out 0.2s;
+    }
+  }
+`;
+
+const StyledDeleteDiv = styled.div`
+  && {
+    cursor: pointer;
+    &&:hover {
+      font-weight: bold;
+      transition: ease-in-out 0.2s;
+    }
+  }
 `;
